@@ -159,11 +159,11 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .btn-ghost:hover{color:var(--text-dark-primary);border-color:rgba(255,255,255,.3)}
 .s-light .btn-ghost{color:var(--text-light-secondary);border-color:rgba(0,0,0,.18)}
 .s-light .btn-ghost:hover{color:var(--text-light-primary);border-color:rgba(0,0,0,.32)}
-.btn-nav{padding:10px 22px;min-height:40px;background:var(--green);color:#04140a}
+.btn-nav{padding:10px 22px;min-height:44px;background:var(--green);color:#04140a}
 .btn-mock{
   font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--green);border:1px solid rgba(57,255,110,.35);border-radius:3px;
-  padding:11px 16px;display:inline-flex;align-items:center;gap:8px;min-height:40px;
+  padding:11px 16px;display:inline-flex;align-items:center;gap:8px;min-height:44px;
   transition:background .25s var(--ease);
 }
 .btn-mock:hover{background:rgba(57,255,110,.08)}
@@ -262,7 +262,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 @media (max-width:1023px){.hero-grid{grid-template-columns:1fr;gap:56px}}
 .hero h1{margin-top:20px}
 .hero-lead{margin-top:28px}
-.hero-disclaimer{margin-top:20px;font-family:var(--f-body);font-size:13.5px;line-height:1.6;color:var(--text-dark-tertiary);max-width:460px}
+.hero-disclaimer{margin-top:20px;font-family:var(--f-body);font-size:13.5px;line-height:1.6;color:var(--text-dark-secondary);max-width:460px}
 .hero-cta{display:flex;align-items:center;gap:16px;margin-top:40px;flex-wrap:wrap}
 .hero-trust{display:flex;align-items:center;gap:22px;margin-top:34px;flex-wrap:wrap}
 .hero-trust .it{display:flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
@@ -336,15 +336,15 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .ev-num{font-family:var(--f-display);font-size:clamp(48px,5vw,72px);line-height:1;color:var(--green)}
 .ev-label{font-family:var(--f-body);font-size:14.5px;line-height:1.5;color:var(--text-dark-primary);max-width:280px}
 .ev-source{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
-.ev-note{font-family:var(--f-body);font-size:12.5px;line-height:1.55;color:var(--text-dark-tertiary);max-width:280px}
-.ev-disclaimer{max-width:var(--content-max);margin:64px auto 0;font-family:var(--f-body);font-size:13.5px;line-height:1.7;color:var(--text-dark-tertiary);max-width:640px}
+.ev-note{font-family:var(--f-body);font-size:12.5px;line-height:1.55;color:var(--text-dark-secondary);max-width:280px}
+.ev-disclaimer{max-width:var(--content-max);margin:64px auto 0;font-family:var(--f-body);font-size:13.5px;line-height:1.7;color:var(--text-dark-secondary);max-width:640px}
 
 /* ================================================================
    SOLUTION REVEAL  (§17.6) — id="solution"
    ================================================================ */
 .solution{text-align:center}
 .solution .sec-inner{max-width:840px}
-.sol-disclaimer{margin:26px auto 0;font-family:var(--f-body);font-size:13.5px;color:var(--text-light-tertiary);max-width:520px}
+.sol-disclaimer{margin:26px auto 0;font-family:var(--f-body);font-size:13.5px;color:var(--text-light-secondary);max-width:520px}
 .sol-diagram{margin:80px auto 0;display:flex;flex-direction:column;align-items:center;gap:0;max-width:420px}
 .sol-node{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;color:var(--text-light-primary);background:#fff;border:1px solid #ddd8ce;border-radius:100px;padding:12px 22px;text-align:center}
 .sol-node.accent{border-color:rgba(39,168,85,.4);color:var(--green-light-surface);background:rgba(39,168,85,.06)}
@@ -387,7 +387,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .compare-col.hl .cc-bubble.q{background:rgba(57,255,110,.1);color:var(--green)}
 .compare-col.hl .cc-bubble.a{background:var(--ui-card);color:var(--text-dark-primary);border:1px solid rgba(255,255,255,.08)}
 .cc-list{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.cc-list li{display:grid;grid-template-columns:14px 1fr;gap:9px;font-family:var(--f-body);font-size:12.5px;line-height:1.55;color:var(--text-light-tertiary)}
+.cc-list li{display:grid;grid-template-columns:14px 1fr;gap:9px;font-family:var(--f-body);font-size:12.5px;line-height:1.55;color:var(--text-light-secondary)}
 .compare-col.hl .cc-list li{color:var(--text-dark-secondary)}
 .cc-list li .b{color:var(--red);font-family:var(--f-mono);font-size:11px}
 .compare-col.hl .cc-list li .b{color:var(--green)}
@@ -407,7 +407,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 
 .dp-export{background:#fff;border:1px solid #ddd8ce;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:20px}
 .dp-export-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid #e8e3da;flex-wrap:wrap;gap:8px}
-.dp-export-head .t{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light-tertiary)}
+.dp-export-head .t{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light-secondary)}
 .dp-export-head .g{font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;color:var(--green-light-surface)}
 .dp-field{display:flex;flex-direction:column;gap:6px}
 .dp-field .lab{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--green-light-surface)}
@@ -451,7 +451,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 
 .orbit-wrap{margin-top:64px;position:relative;display:flex;align-items:center;justify-content:center}
 #orbitCanvas{width:100%;height:340px;max-width:520px}
-.orbit-fallback{display:none;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--text-dark-tertiary);text-align:center;padding:40px 0}
+.orbit-fallback{display:none;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--text-dark-secondary);text-align:center;padding:40px 0}
 .orbit-more{margin-top:18px;text-align:center;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
 
 /* ================================================================
@@ -477,7 +477,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .ec-conf{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:10px}
 .ec-conf-row{display:flex;align-items:center;justify-content:space-between}
 .ec-conf .lab{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
-.ec-conf .why{font-family:var(--f-body);font-size:12.5px;color:var(--text-dark-tertiary)}
+.ec-conf .why{font-family:var(--f-body);font-size:12.5px;color:var(--text-dark-secondary)}
 
 /* ================================================================
    SEGMENTS  (§17.13) — id="segments"
@@ -508,8 +508,8 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .cta-inner{position:relative;z-index:1;max-width:820px;margin:0 auto}
 .cta-sec h2{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,5.4vw,66px);line-height:1.05;letter-spacing:-.015em;color:var(--text-dark-primary)}
 .cta-actions{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:44px;flex-wrap:wrap}
-.cta-micro{margin-top:26px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--text-dark-tertiary)}
-.cta-disclaimer{margin-top:40px;font-family:var(--f-body);font-size:13px;line-height:1.6;color:var(--text-dark-tertiary);max-width:520px;margin-left:auto;margin-right:auto}
+.cta-micro{margin-top:26px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--text-dark-secondary)}
+.cta-disclaimer{margin-top:40px;font-family:var(--f-body);font-size:13px;line-height:1.6;color:var(--text-dark-secondary);max-width:520px;margin-left:auto;margin-right:auto}
 
 /* ================================================================
    FOOTER  (id="footer")
@@ -519,10 +519,10 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .foot-l{display:flex;align-items:center;gap:12px}
 .foot-l .brand-word{font-size:14px}
 .foot-l .brand-mark{width:16px;height:16px}
-.foot-mid{font-family:var(--f-body);font-size:12px;line-height:1.5;color:var(--text-dark-tertiary);max-width:420px}
+.foot-mid{font-family:var(--f-body);font-size:12px;line-height:1.5;color:var(--text-dark-secondary);max-width:420px}
 .foot-r{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-.foot-r a{font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dark-tertiary)}
-.foot-r a:hover{color:var(--text-dark-secondary)}
+.foot-r a{font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dark-secondary);padding:10px 0;display:inline-flex;align-items:center}
+.foot-r a:hover{color:var(--text-dark-primary)}
 
 /* ================================================================
    VISUALLY HIDDEN
@@ -573,7 +573,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
       <p class="hero-disclaimer sr d2">Не заменяет врача и не ставит диагнозы самостоятельно.</p>
       <div class="hero-cta sr d3">
         <a class="btn btn-primary" href="#" data-cta="primary" data-track="hero_primary_cta">Собрать карту здоровья</a>
-        <a class="btn btn-ghost" href="#problem">Посмотреть, как это работает ↓</a>
+        <a class="btn btn-ghost" href="#problem" data-track="hero_secondary_cta">Посмотреть, как это работает ↓</a>
       </div>
       <div class="hero-trust sr d4">
         <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4z"/></svg>Источники</span>
@@ -699,6 +699,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
      §17.5 EVIDENCE STRIP — id="evidence"
      ============================================================ -->
 <section class="evidence" id="evidence">
+  <h2 class="vh">Почему это важно: цена фрагментации и недообследованности</h2>
   <div class="ev-grid">
     <div class="ev-item sr d1">
       <div class="ev-num">16%</div>
@@ -757,6 +758,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
         <div class="kicker sr">Единая карта здоровья</div>
         <h2 class="disp h2 sr d1">Вся история. Не просто все файлы.</h2>
         <p class="body-copy sr d2 h2-gap">Оригинальный документ остаётся источником истины. Каждое распознанное значение хранит происхождение: документ, дату, показатель, референс и уровень уверенности. Отсутствующие данные показаны как неизвестность — не как плохое здоровье.</p>
+        <p class="body-copy sr d3" style="margin-top:20px">Кольцо и лаборатория показывают каждый свою часть. +Life — единственное место, где сон, пульс и анализы стоят рядом на одной шкале времени.</p>
         <p class="body-copy sr d3" style="margin-top:20px">+Life работает с медицинскими данными пользователя и опирается на структурированные клинические правила, протоколы и проверяемые источники.</p>
       </div>
       <div class="sr right d2">
@@ -766,7 +768,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
             <div class="hmap-row">
               <span class="nm">LDL-C</span>
               <svg viewBox="0 0 200 34" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,10 40,14 80,12 120,20 160,24 200,22" fill="none" stroke="#f1c40f" stroke-width="2"/></svg>
-              <span class="last">102 мг/дл</span>
+              <span class="last">102 мг/дл <span style="color:var(--amber)" aria-hidden="true">↑</span><span class="vh">выше целевого диапазона</span></span>
             </div>
             <div class="hmap-row">
               <span class="nm">RHR</span>
@@ -781,7 +783,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
           </div>
           <div class="hmap-foot">
             <span class="hmap-source">Источник: <strong>анализ крови · 12.05.2026</strong></span>
-            <span class="tag tag-muted">3 документа</span>
+            <span style="display:flex;gap:8px"><span class="tag tag-muted">DEMO DATA</span><span class="tag tag-muted">3 документа</span></span>
           </div>
         </div>
       </div>
@@ -797,6 +799,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
     <div class="kicker sr">Health Coach</div>
     <h2 class="disp h2 sr d1">Сначала понять ситуацию. Потом отвечать.</h2>
     <p class="body-copy sr d2 h2-gap">Health Coach получает уже структурированный контекст — а не пытается восстановить медицинскую историю из последних сообщений.</p>
+    <p class="body-copy sr d3" style="margin-top:14px">Health Coach — это не живой человек, а AI поверх вашей карты здоровья: доступен в любой момент, помнит историю целиком и не забывает про отложенный риск, даже если разговор ушёл в сторону. Решения, которые требуют врача, он не принимает — а готовит к ним.</p>
 
     <div class="coach-flow">
       <div class="coach-step sr d1"><span class="cs-n">01</span><span class="cs-lab">Читает canonical health context</span><span class="cs-body">Начинает с того, что уже известно о вас — не с чистого листа.</span></div>
@@ -829,9 +832,9 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
           <li><span class="n">03</span>Видит, что важной части данных не хватает</li>
           <li><span class="n">04</span>Не принимает гипотезу пользователя как факт</li>
           <li><span class="n">05</span>Формирует следующий шаг</li>
-          <li><span class="n">06</span>При необходимости создаёт doctor gate</li>
+          <li><span class="n">06</span>При необходимости создаёт doctor gate — прямо говорит, что решение остаётся за врачом</li>
         </ol>
-        <a class="btn-mock" href="#" id="coachDemoBtn" style="align-self:flex-start;margin-top:4px">Открыть демо-диалог</a>
+        <button type="button" class="btn-mock" id="coachDemoBtn" style="align-self:flex-start;margin-top:4px">Открыть демо-диалог</button>
       </div>
     </div>
   </div>
@@ -890,7 +893,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
       </div>
     </div>
 
-    <p class="dp-note sr block-gap">Первый приём может начинаться с медицинского вопроса, а не со сбора вашей биографии. <strong>Врач остаётся тем, кто принимает клиническое решение</strong> — +Life помогает принести на этот разговор более организованный контекст. Мы не обещаем, что подготовки хватит на весь визит или что дополнительный приём не понадобится.</p>
+    <p class="dp-note sr block-gap">Дело не в том, хорош ли ваш врач. Даже отличный специалист работает 15–20 минут и с той историей, которую вы успели вспомнить и принести с собой. Первый приём может начинаться с медицинского вопроса, а не со сбора биографии. <strong>Врач остаётся тем, кто принимает клиническое решение</strong> — +Life помогает принести на этот разговор более организованный контекст. Мы не обещаем, что подготовки хватит на весь визит или что дополнительный приём не понадобится.</p>
   </div>
 </section>
 
@@ -973,6 +976,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 
     <div class="trust-grid">
       <div class="trust-principles sr d1">
+        <div class="tp"><div class="t">Ваши данные</div><div class="d">Данные принадлежат вам: вы сами решаете, что загружать, можете выгрузить или удалить их в любой момент. Мы не используем их для обучения моделей без вашего согласия.</div></div>
         <div class="tp"><div class="t">Источник</div><div class="d">Каждый значимый факт должен иметь provenance: документ, дату, показатель и уровень уверенности.</div></div>
         <div class="tp"><div class="t">Неопределённость</div><div class="d">«Не знаю» — допустимый результат, а не сбой системы.</div></div>
         <div class="tp"><div class="t">Ограничения</div><div class="d">Treatment decisions могут требовать врача — +Life не принимает их вместо него.</div></div>
@@ -981,7 +985,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 
       <div class="sr right d2">
         <div class="evidence-card" aria-label="Пример insight с указанием источника: LDL-C 4.1 ммоль/л, источник — анализ крови от 12 мая 2026, проверено по оригиналу, динамика — 3 измерения, вывод protocol-supported, уверенность средняя">
-          <div class="ec-head"><span class="ec-metric">LDL-C · 4.1 ммоль/л</span><span class="ec-source">Анализ крови · 12.05.2026</span></div>
+          <div class="ec-head"><span class="ec-metric">LDL-C · 4.1 ммоль/л</span><span class="tag tag-muted">ПРИМЕР</span><span class="ec-source">Анализ крови · 12.05.2026</span></div>
           <div class="ec-rows">
             <div class="ec-row"><span class="lab">Проверка</span><span class="val">Проверено по оригиналу</span></div>
             <div class="ec-row"><span class="lab">Динамика</span><span class="val">3 измерения</span></div>
@@ -1143,6 +1147,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
   var navEl = document.getElementById('nav');
   var navToggle = document.getElementById('navToggle');
   var navLinks = document.getElementById('navLinks');
+  var mobileNavQuery = window.matchMedia('(max-width: 900px)');
 
   function onScroll(){
     if (window.scrollY > 8) navEl.classList.add('scrolled');
@@ -1151,16 +1156,27 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 
+  // Below the 900px breakpoint the closed menu is only opacity-hidden (for the
+  // slide/fade transition), so it must also be taken out of tab order via
+  // `inert` — otherwise focus lands on invisible links. Above 900px the menu
+  // is always visible, so it must never be inert regardless of data-open.
+  function syncNavInert(){
+    navLinks.inert = mobileNavQuery.matches && navEl.getAttribute('data-open') !== 'true';
+  }
   function closeMenu(){
     navEl.setAttribute('data-open','false');
     navToggle.setAttribute('aria-expanded','false');
     navToggle.setAttribute('aria-label','Открыть меню');
+    syncNavInert();
   }
   function openMenu(){
     navEl.setAttribute('data-open','true');
     navToggle.setAttribute('aria-expanded','true');
     navToggle.setAttribute('aria-label','Закрыть меню');
+    syncNavInert();
   }
+  syncNavInert();
+  if (mobileNavQuery.addEventListener) mobileNavQuery.addEventListener('change', syncNavInert);
   if (navToggle){
     navToggle.addEventListener('click', function(){
       var isOpen = navEl.getAttribute('data-open') === 'true';
