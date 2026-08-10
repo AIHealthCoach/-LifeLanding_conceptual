@@ -9,526 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap">
-<style>
-/* ================================================================
-   §19 ЦВЕТОВАЯ СИСТЕМА — токены из ТЗ, один в один
-   ================================================================ */
-:root{
-  --ink:#09090b;
-  --ink-2:#0f0f12;
-  --ui-card:#171717;
-  --ui-muted:#262626;
-
-  --paper:#f1ede6;
-  --paper-2:#e8e3da;
-
-  --green:#39ff6e;
-  --green-light-surface:#27a855;
-  --green-a:rgba(57,255,110,.12);
-  --green-a2:rgba(57,255,110,.06);
-
-  --text-dark-primary:#ededea;
-  --text-dark-secondary:#9a9691;
-  --text-dark-tertiary:#6a6560;
-
-  --text-light-primary:#1a1a1a;
-  --text-light-secondary:#555;
-  --text-light-tertiary:#888;
-
-  --amber:#f1c40f;
-  --red:#e74c3c;
-
-  /* §20 типографика */
-  --f-display:'Playfair Display', Georgia, serif;
-  --f-body:'DM Sans', system-ui, -apple-system, sans-serif;
-  --f-mono:'DM Mono', 'SFMono-Regular', Consolas, monospace;
-  --ease:cubic-bezier(.16,1,.3,1);
-
-  /* §21 пространство — desktop ≥1200 */
-  --pad-x:72px;
-  --pad-y:160px;
-  --pad-y-statement:200px;
-  --content-max:1240px;
-  --narrative-max:720px;
-  --para-max:640px;
-  --col-gap:88px;
-  --card-pad:32px;
-  --card-gap:28px;
-}
-
-@media (max-width:1199px){
-  :root{--pad-x:36px;--pad-y:108px;--pad-y-statement:140px;--col-gap:48px;--card-pad:26px;--card-gap:20px}
-}
-@media (max-width:767px){
-  :root{--pad-x:20px;--pad-y:80px;--pad-y-statement:96px;--col-gap:28px;--card-pad:20px;--card-gap:16px}
-}
-
-/* ================================================================
-   BASE
-   ================================================================ */
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
-body{
-  margin:0;
-  font-family:var(--f-body);
-  font-weight:400;
-  font-size:16px;
-  line-height:1.6;
-  color:var(--text-dark-primary);
-  background:var(--ink);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden;
-}
-img,svg,canvas{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-em{font-style:italic}
-ul,ol{margin:0;padding:0;list-style:none}
-h1,h2,h3,h4,p{margin:0}
-
-.skip-link{position:absolute;left:12px;top:-60px;background:var(--green);color:#000;padding:10px 18px;border-radius:4px;font-family:var(--f-mono);font-size:12px;z-index:200;transition:top .2s var(--ease)}
-.skip-link:focus{top:12px}
-
-a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:2px}
-.s-light a:focus-visible,.s-light button:focus-visible{outline-color:var(--green-light-surface)}
-
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
-  .sr{opacity:1!important;transform:none!important}
-}
-
-/* ================================================================
-   SECTION SHELL
-   ================================================================ */
-.sec{padding:var(--pad-y) var(--pad-x);position:relative}
-.sec-inner{max-width:var(--content-max);margin:0 auto;position:relative;z-index:1}
-.s-dark{background:var(--ink);color:var(--text-dark-primary)}
-.s-dark2{background:var(--ink-2);color:var(--text-dark-primary)}
-.s-light{background:var(--paper);color:var(--text-light-primary)}
-
-/* ================================================================
-   TYPE
-   ================================================================ */
-.disp{font-family:var(--f-display);font-weight:400;letter-spacing:-.01em}
-.disp em{color:var(--green);font-style:italic}
-.s-light .disp em{color:var(--green-light-surface)}
-.h1{font-size:clamp(40px,6vw,88px);line-height:.96;letter-spacing:-.02em}
-.h2{font-size:clamp(32px,4.6vw,64px);line-height:1.08}
-.lead{font-family:var(--f-body);font-size:clamp(17px,1.6vw,19px);line-height:1.7;color:var(--text-dark-secondary);max-width:var(--para-max)}
-.s-light .lead{color:var(--text-light-secondary)}
-.body-copy{font-family:var(--f-body);font-size:16px;line-height:1.75;color:var(--text-dark-secondary);max-width:var(--para-max)}
-.s-light .body-copy{color:var(--text-light-secondary)}
-.body-sm{font-family:var(--f-body);font-size:14px;line-height:1.7;color:var(--text-dark-secondary)}
-.s-light .body-sm{color:var(--text-light-secondary)}
-.h2-gap{margin-top:32px}
-.intro-gap{margin-top:72px}
-.block-gap{margin-top:120px}
-
-.kicker{
-  display:flex;align-items:center;gap:14px;
-  font-family:var(--f-mono);font-weight:400;
-  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--text-dark-tertiary);margin-bottom:26px;
-}
-.kicker::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.12)}
-.s-light .kicker{color:var(--text-light-tertiary)}
-.s-light .kicker::after{background:rgba(0,0,0,.14)}
-.kicker.short::after{flex:0 0 40px}
-.kicker.center{justify-content:center}
-.kicker.center::after{display:none}
-
-.mono-label{font-family:var(--f-mono);font-weight:400;letter-spacing:.12em;text-transform:uppercase;font-size:10px;color:var(--text-dark-tertiary)}
-.s-light .mono-label{color:var(--text-light-tertiary)}
-
-/* ================================================================
-   BUTTONS
-   ================================================================ */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  font-family:var(--f-mono);font-weight:500;
-  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  padding:16px 30px;border-radius:3px;min-height:44px;
-  transition:transform .3s var(--ease),opacity .3s var(--ease);
-  border:1px solid transparent;
-}
-.btn:hover{opacity:.9;transform:translateY(-2px)}
-.btn-primary{background:var(--green);color:#04140a}
-.s-light .btn-primary,.btn-primary-lt{background:var(--green-light-surface);color:#fff}
-.btn-ghost{color:var(--text-dark-secondary);border-color:rgba(255,255,255,.16)}
-.btn-ghost:hover{color:var(--text-dark-primary);border-color:rgba(255,255,255,.3)}
-.s-light .btn-ghost{color:var(--text-light-secondary);border-color:rgba(0,0,0,.18)}
-.s-light .btn-ghost:hover{color:var(--text-light-primary);border-color:rgba(0,0,0,.32)}
-.btn-nav{padding:10px 22px;min-height:44px;background:var(--green);color:#04140a}
-.btn-mock{
-  font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--green);border:1px solid rgba(57,255,110,.35);border-radius:3px;
-  padding:11px 16px;display:inline-flex;align-items:center;gap:8px;min-height:44px;
-  transition:background .25s var(--ease);
-}
-.btn-mock:hover{background:rgba(57,255,110,.08)}
-
-/* ================================================================
-   TAGS / PILLS / BADGES
-   ================================================================ */
-.tag{display:inline-block;font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:3px}
-.tag-green{background:var(--green-a);color:var(--green);border:1px solid rgba(57,255,110,.25)}
-.tag-muted{background:rgba(255,255,255,.05);color:var(--text-dark-secondary);border:1px solid rgba(255,255,255,.09)}
-.s-light .tag-muted{background:rgba(0,0,0,.04);color:var(--text-light-secondary);border-color:rgba(0,0,0,.09)}
-.tag-amber{background:rgba(241,196,15,.14);color:var(--amber)}
-.tag-red{background:rgba(231,76,60,.14);color:var(--red)}
-
-.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:100px}
-.pill-green{background:var(--green-a);color:var(--green);border:1px solid rgba(57,255,110,.28)}
-.pill-muted{background:rgba(255,255,255,.05);color:var(--text-dark-secondary);border:1px solid rgba(255,255,255,.09)}
-.s-light .pill-muted{background:#fff;color:var(--text-light-secondary);border-color:#ddd8ce}
-
-.live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(57,255,110,.7);animation:blink 2.4s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
-
-/* ================================================================
-   SCROLL REVEAL
-   ================================================================ */
-.sr{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.sr.left{transform:translateX(-32px)}
-.sr.right{transform:translateX(32px)}
-.sr.vis{opacity:1;transform:none}
-.sr.d1{transition-delay:.08s}
-.sr.d2{transition-delay:.16s}
-.sr.d3{transition-delay:.24s}
-.sr.d4{transition-delay:.32s}
-@media (max-width:767px){
-  .sr.left{transform:translateX(-14px)}
-  .sr.right{transform:translateX(14px)}
-}
-
-/* ================================================================
-   GRID HELPERS  (§22)
-   ================================================================ */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--col-gap);align-items:start}
-.grid-2.g-46-54{grid-template-columns:.9fr 1.1fr}
-.grid-2.g-54-46{grid-template-columns:1.1fr .9fr}
-@media (max-width:1023px){.grid-2{grid-template-columns:1fr!important;gap:56px}}
-
-/* ================================================================
-   CARDS  (§23)
-   ================================================================ */
-.card-dark{background:var(--ui-card);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:var(--card-pad)}
-.card-light{background:#fff;border:1px solid #ddd8ce;border-radius:14px;padding:var(--card-pad)}
-.card-paper{background:var(--paper-2);border:1px solid #ddd8ce;border-radius:14px;padding:var(--card-pad)}
-
-/* ================================================================
-   NAV  (§17.1)
-   ================================================================ */
-.nav{
-  position:sticky;top:0;z-index:60;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 var(--pad-x);height:76px;
-  background:rgba(9,9,11,.72);
-  border-bottom:1px solid rgba(255,255,255,.07);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  transition:background .3s var(--ease);
-}
-.nav.scrolled{background:rgba(9,9,11,.94)}
-.brand{display:flex;align-items:center;gap:9px}
-.brand-mark{width:20px;height:20px}
-.brand-word{font-family:var(--f-body);font-weight:600;font-size:18px;color:var(--text-dark-primary);letter-spacing:-.01em}
-.nav-links{display:flex;align-items:center;gap:34px}
-.nav-links a:not(.btn){font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-dark-secondary)}
-.nav-links a:not(.btn):hover{color:var(--text-dark-primary)}
-.nav-toggle{display:none;width:44px;height:44px;align-items:center;justify-content:center}
-.nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{content:"";display:block;width:20px;height:1.5px;background:var(--text-dark-primary);position:relative;transition:transform .25s var(--ease),opacity .25s var(--ease)}
-.nav-toggle span::before{position:absolute;top:-6px}
-.nav-toggle span::after{position:absolute;top:6px}
-.nav[data-open="true"] .nav-toggle span{background:transparent}
-.nav[data-open="true"] .nav-toggle span::before{transform:translateY(6px) rotate(45deg)}
-.nav[data-open="true"] .nav-toggle span::after{transform:translateY(-6px) rotate(-45deg)}
-
-@media (max-width:900px){
-  .nav-links{position:fixed;inset:76px 0 0 0;height:calc(100dvh - 76px);background:var(--ink);flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:0;padding:8px var(--pad-x) 40px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease);overflow-y:auto}
-  .nav[data-open="true"] .nav-links{opacity:1;transform:none;pointer-events:auto}
-  .nav-links a:not(.btn){width:100%;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:13px}
-  .nav-links .btn{margin-top:24px;width:100%}
-  .nav-toggle{display:inline-flex}
-}
-
-/* ================================================================
-   HERO  (§17.2)
-   ================================================================ */
-.hero{background:var(--ink);padding:132px var(--pad-x) 120px;position:relative;overflow:hidden}
-@media (max-width:767px){.hero{padding:64px var(--pad-x) 72px}}
-.hero-glow{position:absolute;top:-180px;right:-160px;width:640px;height:640px;border-radius:50%;filter:blur(100px);background:radial-gradient(circle,rgba(20,52,32,.55) 0%,transparent 68%);pointer-events:none}
-.hero-grid{position:relative;z-index:1;max-width:var(--content-max);margin:0 auto;display:grid;grid-template-columns:.92fr 1.08fr;gap:90px;align-items:center}
-@media (max-width:1023px){.hero-grid{grid-template-columns:1fr;gap:56px}}
-.hero h1{margin-top:20px}
-.hero-lead{margin-top:28px}
-.hero-disclaimer{margin-top:20px;font-family:var(--f-body);font-size:13.5px;line-height:1.6;color:var(--text-dark-secondary);max-width:460px}
-.hero-cta{display:flex;align-items:center;gap:16px;margin-top:40px;flex-wrap:wrap}
-.hero-trust{display:flex;align-items:center;gap:22px;margin-top:34px;flex-wrap:wrap}
-.hero-trust .it{display:flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
-.hero-trust .it svg{width:13px;height:13px;color:var(--green)}
-
-.hero-mock{background:var(--ui-card);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:30px;display:flex;flex-direction:column;gap:22px}
-.hm-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.hm-persona{display:flex;flex-direction:column;gap:2px}
-.hm-persona .nm{font-family:var(--f-display);font-size:22px;color:var(--text-dark-primary)}
-.hm-badges{display:flex;gap:8px;flex-wrap:wrap}
-.hm-rows{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.08)}
-.hm-row{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08);align-items:baseline}
-@media (max-width:480px){.hm-row{grid-template-columns:1fr}}
-.hm-row .lab{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
-.hm-row .val{font-family:var(--f-body);font-size:14.5px;line-height:1.5;color:var(--text-dark-primary)}
-.hm-priorities{display:flex;flex-direction:column;gap:10px}
-.hm-pri-label{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
-.hm-pri-list{display:flex;flex-direction:column;gap:9px}
-.hm-pri{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:center;font-family:var(--f-body);font-size:13.5px;color:var(--text-dark-primary)}
-.hm-pri .n{font-family:var(--f-mono);font-size:11px;color:var(--green)}
-.hm-foot{display:flex;justify-content:flex-end}
-
-/* ================================================================
-   PROBLEM (intro §17.3 + four problems §17.4)  — id="problem"
-   ================================================================ */
-.prob-visual{margin-top:56px;display:flex;flex-direction:column}
-.prob-row{display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--col-gap);align-items:center;padding:88px 0;border-top:1px solid rgba(255,255,255,.09)}
-.prob-row:last-child{border-bottom:1px solid rgba(255,255,255,.09)}
-@media (max-width:1023px){.prob-row{grid-template-columns:1fr;gap:40px;padding:60px 0}}
-.prob-index{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dark-tertiary);margin-bottom:18px}
-.prob-row h3{font-family:var(--f-display);font-weight:400;font-size:clamp(24px,2.6vw,34px);line-height:1.2;color:var(--text-dark-primary);max-width:520px}
-.prob-vis{background:var(--ui-card);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:26px;min-height:220px;display:flex;flex-direction:column;justify-content:center;gap:16px}
-
-/* row 01 — fragmented sources converging */
-.pv-sources{display:flex;flex-wrap:wrap;gap:10px}
-.pv-chip{display:flex;flex-direction:column;gap:3px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:11px 14px;min-width:120px}
-.pv-chip .l{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
-.pv-chip .v{font-family:var(--f-body);font-size:13px;color:var(--text-dark-primary)}
-.pv-chip .v.warn{color:var(--red)}
-.pv-converge{display:flex;align-items:center;justify-content:center;gap:10px;padding-top:6px}
-.pv-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(57,255,110,.4),transparent)}
-.pv-center{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);white-space:nowrap}
-
-/* row 02 — chaos -> summary */
-.pv-flow{display:flex;align-items:center;gap:18px;justify-content:center}
-.pv-docs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.pv-doc{width:30px;height:38px;border:1px solid rgba(255,255,255,.16);border-radius:3px;background:rgba(255,255,255,.03);transform:rotate(var(--r,0deg))}
-.pv-doc:nth-child(1){--r:-6deg}.pv-doc:nth-child(2){--r:4deg}.pv-doc:nth-child(3){--r:-3deg}
-.pv-doc:nth-child(4){--r:5deg}.pv-doc:nth-child(5){--r:-4deg}.pv-doc:nth-child(6){--r:2deg}
-.pv-arrow{color:var(--green);flex-shrink:0}
-.pv-summary{border:1px solid rgba(57,255,110,.3);border-radius:8px;background:rgba(57,255,110,.05);padding:14px 18px;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
-
-/* row 03 — split screen */
-.pv-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden}
-.pv-split > div{background:var(--ink-2);padding:16px;display:flex;flex-direction:column;gap:8px}
-.pv-split .t{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
-.pv-split .b{font-family:var(--f-body);font-size:12.5px;line-height:1.55;color:var(--text-dark-secondary)}
-.pv-split .b strong{color:var(--green);font-weight:500}
-
-/* row 04 — specialists -> unified */
-.pv-specialists{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.pv-spec-chip{font-family:var(--f-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dark-secondary);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:7px 13px}
-
-/* ================================================================
-   EVIDENCE STRIP  (§17.5) — id="evidence"
-   ================================================================ */
-.evidence{background:var(--ink-2);padding:96px var(--pad-x)}
-.ev-grid{max-width:var(--content-max);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:56px}
-@media (max-width:900px){.ev-grid{grid-template-columns:1fr;gap:48px}}
-.ev-item{display:flex;flex-direction:column;gap:14px}
-.ev-num{font-family:var(--f-display);font-size:clamp(48px,5vw,72px);line-height:1;color:var(--green)}
-.ev-label{font-family:var(--f-body);font-size:14.5px;line-height:1.5;color:var(--text-dark-primary);max-width:280px}
-.ev-source{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
-.ev-note{font-family:var(--f-body);font-size:12.5px;line-height:1.55;color:var(--text-dark-secondary);max-width:280px}
-.ev-disclaimer{max-width:var(--content-max);margin:64px auto 0;font-family:var(--f-body);font-size:13.5px;line-height:1.7;color:var(--text-dark-secondary);max-width:640px}
-
-/* ================================================================
-   SOLUTION REVEAL  (§17.6) — id="solution"
-   ================================================================ */
-.solution{text-align:center}
-.solution .sec-inner{max-width:840px}
-.sol-disclaimer{margin:26px auto 0;font-family:var(--f-body);font-size:13.5px;color:var(--text-light-secondary);max-width:520px}
-.sol-diagram{margin:80px auto 0;display:flex;flex-direction:column;align-items:center;gap:0;max-width:420px}
-.sol-node{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;color:var(--text-light-primary);background:#fff;border:1px solid #ddd8ce;border-radius:100px;padding:12px 22px;text-align:center}
-.sol-node.accent{border-color:rgba(39,168,85,.4);color:var(--green-light-surface);background:rgba(39,168,85,.06)}
-.sol-node-loop{display:inline-flex;align-items:center;gap:8px}
-.sol-arrow{color:var(--text-light-tertiary);padding:10px 0;font-size:14px;line-height:1}
-
-/* ================================================================
-   HEALTH MAP  (§17.7) — id="health-map"
-   ================================================================ */
-.hmap-mock{background:var(--ui-card);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:22px}
-.hmap-timeline{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--text-dark-tertiary);border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:14px}
-.hmap-series{display:flex;flex-direction:column;gap:16px}
-.hmap-row{display:grid;grid-template-columns:96px 1fr auto;gap:16px;align-items:center}
-.hmap-row .nm{font-family:var(--f-mono);font-size:11px;color:var(--text-dark-secondary)}
-.hmap-row svg{width:100%;height:34px}
-.hmap-row .last{font-family:var(--f-body);font-size:12.5px;color:var(--text-dark-primary);white-space:nowrap}
-.hmap-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid rgba(255,255,255,.08);padding-top:16px}
-.hmap-source{font-family:var(--f-mono);font-size:10px;color:var(--text-dark-tertiary)}
-.hmap-source strong{color:var(--text-dark-secondary);font-weight:400}
-
-/* ================================================================
-   HEALTH COACH  (§17.8) — id="coach"
-   ================================================================ */
-.coach-flow{display:flex;flex-direction:column;gap:0;margin-top:56px;border-top:1px solid #ddd8ce}
-.coach-step{display:grid;grid-template-columns:44px 1fr 1.4fr;gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid #ddd8ce}
-@media (max-width:767px){.coach-step{grid-template-columns:32px 1fr;}.coach-step .cs-body{grid-column:1 / -1;margin-top:4px}}
-.coach-step .cs-n{font-family:var(--f-mono);font-size:12px;color:var(--green-light-surface)}
-.coach-step .cs-lab{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.02em;color:var(--text-light-primary)}
-.coach-step .cs-body{font-family:var(--f-body);font-size:14px;line-height:1.6;color:var(--text-light-secondary)}
-
-.compare{margin-top:96px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#ddd8ce;border:1px solid #ddd8ce;border-radius:16px;overflow:hidden}
-@media (max-width:900px){.compare{grid-template-columns:1fr}}
-.compare-col{background:#fff;padding:30px;display:flex;flex-direction:column;gap:16px}
-.compare-col.hl{background:var(--ink)}
-.cc-head{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light-tertiary)}
-.compare-col.hl .cc-head{color:var(--green)}
-.cc-bubble{border-radius:10px;padding:13px 16px;font-family:var(--f-body);font-size:13.5px;line-height:1.6}
-.cc-bubble.q{background:var(--paper-2);color:var(--text-light-primary);align-self:flex-start;max-width:92%}
-.cc-bubble.a{background:#f4f1ea;color:var(--text-light-secondary);align-self:flex-start;max-width:92%;border:1px solid #e2ddd2}
-.compare-col.hl .cc-bubble.q{background:rgba(57,255,110,.1);color:var(--green)}
-.compare-col.hl .cc-bubble.a{background:var(--ui-card);color:var(--text-dark-primary);border:1px solid rgba(255,255,255,.08)}
-.cc-list{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.cc-list li{display:grid;grid-template-columns:14px 1fr;gap:9px;font-family:var(--f-body);font-size:12.5px;line-height:1.55;color:var(--text-light-secondary)}
-.compare-col.hl .cc-list li{color:var(--text-dark-secondary)}
-.cc-list li .b{color:var(--red);font-family:var(--f-mono);font-size:11px}
-.compare-col.hl .cc-list li .b{color:var(--green)}
-.cc-steps{display:flex;flex-direction:column;gap:9px;margin-top:2px}
-.cc-steps li{display:grid;grid-template-columns:16px 1fr;gap:9px;font-family:var(--f-body);font-size:12.5px;line-height:1.5;color:var(--text-dark-secondary)}
-.cc-steps li .n{font-family:var(--f-mono);font-size:10px;color:var(--green)}
-
-/* ================================================================
-   DOCTOR PREP  (§17.9) — id="doctor-prep"
-   ================================================================ */
-.dp-before{display:flex;flex-direction:column;gap:0;margin-top:30px;border-top:1px solid rgba(255,255,255,.09)}
-.dp-before li{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.09);font-family:var(--f-body);font-size:13.5px;line-height:1.5;color:var(--text-dark-secondary);display:flex;gap:10px}
-.dp-before li::before{content:"—";color:var(--text-dark-tertiary);flex-shrink:0}
-.dp-trigger{margin-top:34px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.dp-trigger .t{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--text-dark-secondary)}
-.dp-trigger .t strong{color:var(--text-dark-primary);font-weight:400}
-
-.dp-export{background:#fff;border:1px solid #ddd8ce;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:20px}
-.dp-export-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid #e8e3da;flex-wrap:wrap;gap:8px}
-.dp-export-head .t{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light-secondary)}
-.dp-export-head .g{font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;color:var(--green-light-surface)}
-.dp-field{display:flex;flex-direction:column;gap:6px}
-.dp-field .lab{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--green-light-surface)}
-.dp-field .val{font-family:var(--f-body);font-size:13.5px;line-height:1.6;color:var(--text-light-primary)}
-.dp-field ul{display:flex;flex-direction:column;gap:5px}
-.dp-field ul li{font-family:var(--f-body);font-size:13.5px;line-height:1.55;color:var(--text-light-primary);padding-left:14px;position:relative}
-.dp-field ul li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--green-light-surface)}
-.dp-field ol{display:flex;flex-direction:column;gap:6px;counter-reset:q}
-.dp-field ol li{font-family:var(--f-body);font-size:13.5px;line-height:1.55;color:var(--text-light-primary);padding-left:22px;position:relative}
-.dp-field ol li::before{counter-increment:q;content:counter(q) ".";position:absolute;left:0;font-family:var(--f-mono);color:var(--green-light-surface);font-size:12px}
-
-.dp-note{margin-top:56px;font-family:var(--f-body);font-size:14px;line-height:1.7;color:var(--text-dark-secondary);max-width:var(--para-max)}
-.dp-note strong{color:var(--text-dark-primary);font-weight:500}
-
-/* ================================================================
-   ROADMAP  (§17.10) — id="roadmap"
-   ================================================================ */
-.rm-timeline{margin-top:64px;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#ddd8ce;border:1px solid #ddd8ce;border-radius:14px;overflow:hidden}
-@media (max-width:900px){.rm-timeline{grid-template-columns:1fr}}
-.rm-stop{background:#fff;padding:24px 20px;display:flex;flex-direction:column;gap:10px;min-height:170px}
-.rm-stop .when{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green-light-surface)}
-.rm-stop .what{font-family:var(--f-display);font-size:17px;line-height:1.3;color:var(--text-light-primary)}
-.rm-tasks{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--card-gap)}
-@media (max-width:900px){.rm-tasks{grid-template-columns:1fr}}
-.rm-task{background:var(--paper-2);border:1px solid #ddd8ce;border-radius:12px;padding:20px}
-.rm-task .t{font-family:var(--f-body);font-size:13.5px;line-height:1.5;color:var(--text-light-primary);margin-bottom:10px}
-.rm-task .tags{display:flex;flex-wrap:wrap;gap:6px}
-.rm-legend{margin-top:28px;display:flex;flex-wrap:wrap;gap:22px}
-.rm-legend .li{display:flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-light-tertiary)}
-.rm-legend .li i{width:7px;height:7px;border-radius:50%;display:inline-block}
-
-/* ================================================================
-   CHANNELS  (§17.11) — id="channels"
-   ================================================================ */
-.ch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--card-gap);margin-top:64px}
-@media (max-width:900px){.ch-grid{grid-template-columns:1fr}}
-.ch-card{background:var(--ui-card);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:12px}
-.ch-card .ico{width:34px;height:34px;border-radius:9px;background:var(--green-a);color:var(--green);display:flex;align-items:center;justify-content:center}
-.ch-card h3{font-family:var(--f-display);font-size:19px;color:var(--text-dark-primary)}
-.ch-card p{font-family:var(--f-body);font-size:13px;line-height:1.6;color:var(--text-dark-secondary)}
-
-.orbit-wrap{margin-top:64px;position:relative;display:flex;align-items:center;justify-content:center}
-#orbitCanvas{width:100%;height:340px;max-width:520px}
-.orbit-fallback{display:none;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--text-dark-secondary);text-align:center;padding:40px 0}
-.orbit-more{margin-top:18px;text-align:center;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
-
-/* ================================================================
-   TRUST  (§17.12) — id="trust"
-   ================================================================ */
-.trust-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:var(--col-gap);align-items:start;margin-top:72px}
-@media (max-width:1023px){.trust-grid{grid-template-columns:1fr;gap:48px}}
-.trust-principles{display:flex;flex-direction:column;gap:0}
-.tp{padding:30px 0;border-top:1px solid #ddd8ce}
-.tp:last-child{border-bottom:1px solid #ddd8ce}
-.tp .t{font-family:var(--f-display);font-size:22px;color:var(--text-light-primary);margin-bottom:8px}
-.tp .d{font-family:var(--f-body);font-size:14px;line-height:1.6;color:var(--text-light-secondary);max-width:400px}
-
-.evidence-card{background:var(--ink);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:30px;color:var(--text-dark-primary)}
-.ec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
-.ec-metric{font-family:var(--f-display);font-size:26px;color:var(--text-dark-primary)}
-.ec-source{font-family:var(--f-mono);font-size:10px;color:var(--text-dark-tertiary)}
-.ec-rows{display:flex;flex-direction:column;gap:14px;margin-top:18px}
-.ec-row{display:grid;grid-template-columns:150px 1fr;gap:14px}
-@media (max-width:480px){.ec-row{grid-template-columns:1fr}}
-.ec-row .lab{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
-.ec-row .val{font-family:var(--f-body);font-size:13.5px;color:var(--text-dark-secondary)}
-.ec-conf{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:10px}
-.ec-conf-row{display:flex;align-items:center;justify-content:space-between}
-.ec-conf .lab{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
-.ec-conf .why{font-family:var(--f-body);font-size:12.5px;color:var(--text-dark-secondary)}
-
-/* ================================================================
-   SEGMENTS  (§17.13) — id="segments"
-   ================================================================ */
-.seg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--col-gap);margin-top:72px}
-@media (max-width:1023px){.seg-grid{grid-template-columns:1fr;gap:64px}}
-.seg-col{display:flex;flex-direction:column;gap:20px;padding-top:28px;border-top:1px solid rgba(255,255,255,.14)}
-.seg-col h3{font-family:var(--f-display);font-size:24px;line-height:1.25;color:var(--text-dark-primary)}
-.seg-col .lab{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dark-tertiary)}
-.seg-col p{font-family:var(--f-body);font-size:13.5px;line-height:1.65;color:var(--text-dark-secondary)}
-
-/* ================================================================
-   ONBOARDING  (§17.14) — id="onboarding"
-   ================================================================ */
-.ob-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--card-gap);margin-top:64px}
-@media (max-width:900px){.ob-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.ob-grid{grid-template-columns:1fr}}
-.ob-step{display:flex;flex-direction:column;gap:12px}
-.ob-step .n{font-family:var(--f-display);font-size:34px;color:var(--green-light-surface);line-height:1}
-.ob-step .t{font-family:var(--f-body);font-size:15px;line-height:1.5;color:var(--text-light-primary)}
-.ob-caption{margin-top:56px;font-family:var(--f-body);font-size:14.5px;line-height:1.7;color:var(--text-light-secondary);max-width:var(--para-max)}
-
-/* ================================================================
-   FINAL CTA  (§17.15) — id="cta"
-   ================================================================ */
-.cta-sec{position:relative;padding:var(--pad-y-statement) var(--pad-x);background:var(--ink);text-align:center;overflow:hidden}
-#ctaCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
-.cta-inner{position:relative;z-index:1;max-width:820px;margin:0 auto}
-.cta-sec h2{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,5.4vw,66px);line-height:1.05;letter-spacing:-.015em;color:var(--text-dark-primary)}
-.cta-actions{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:44px;flex-wrap:wrap}
-.cta-micro{margin-top:26px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--text-dark-secondary)}
-.cta-disclaimer{margin-top:40px;font-family:var(--f-body);font-size:13px;line-height:1.6;color:var(--text-dark-secondary);max-width:520px;margin-left:auto;margin-right:auto}
-
-/* ================================================================
-   FOOTER  (id="footer")
-   ================================================================ */
-.foot{background:var(--ink);padding:32px var(--pad-x);border-top:1px solid rgba(255,255,255,.07)}
-.foot-inner{max-width:var(--content-max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.foot-l{display:flex;align-items:center;gap:12px}
-.foot-l .brand-word{font-size:14px}
-.foot-l .brand-mark{width:16px;height:16px}
-.foot-mid{font-family:var(--f-body);font-size:12px;line-height:1.5;color:var(--text-dark-secondary);max-width:420px}
-.foot-r{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-.foot-r a{font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dark-secondary);padding:10px 0;display:inline-flex;align-items:center}
-.foot-r a:hover{color:var(--text-dark-primary)}
-
-/* ================================================================
-   VISUALLY HIDDEN
-   ================================================================ */
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -567,50 +48,67 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-grid">
     <div>
-      <div class="kicker sr short">+Life · Personal Health OS</div>
-      <h1 class="disp h1 sr d1">Все данные о здоровье —<br>в одном <em>контексте</em>.<br>Следующий шаг — без гаданий.</h1>
-      <p class="lead hero-lead sr d2">Анализы, заключения, носимые устройства и ваша история перестают жить отдельно. +Life связывает их во времени, показывает слепые зоны, помогает выбрать несколько приоритетов и подготовиться к разговору с врачом.</p>
+      <div class="kicker sr short">+Life · Персональная система здоровья</div>
+      <h1 class="disp h1 sr d1">Ваш комплексный ИИ-помощник<br>в профилактике <em>здоровья</em>.</h1>
+      <p class="lead hero-lead sr d2">Хранит анализы и заключения в одном месте, готовит к визиту к врачу и подсказывает, что стоит уточнить, если заключение показалось неполным или противоречивым. Предлагает понятную программу действий для ваших рисков — и остаётся на связи в мессенджере, когда что-то меняется.</p>
       <p class="hero-disclaimer sr d2">Не заменяет врача и не ставит диагнозы самостоятельно.</p>
       <div class="hero-cta sr d3">
         <a class="btn btn-primary" href="#" data-cta="primary" data-track="hero_primary_cta">Собрать карту здоровья</a>
-        <a class="btn btn-ghost" href="#problem" data-track="hero_secondary_cta">Посмотреть, как это работает ↓</a>
+        <a class="btn btn-ghost" href="#evidence" data-track="hero_secondary_cta">Посмотреть, как это работает ↓</a>
       </div>
       <div class="hero-trust sr d4">
         <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4z"/></svg>Источники</span>
         <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>История изменений</span>
         <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M6 6l1.4 1.4M16.6 16.6 18 18M6 18l1.4-1.4M16.6 7.4 18 6"/></svg>Уровни уверенности</span>
       </div>
+      <div class="hero-picker sr d4">
+        <span class="lab">Похоже на вас?</span>
+        <div class="hero-picker-row">
+          <a class="hero-pick" href="segment-1.html">Не хочу пропустить важное<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a class="hero-pick" href="segment-2.html">Уже много данных<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a class="hero-pick" href="segment-3.html">Хочу свою систему<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a class="hero-pick" href="segment-4.html">Уже есть своя система<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
     </div>
 
-    <!-- product window: единственный крупный mockup hero, все данные — demo -->
-    <div class="hero-mock sr right d2" role="img" aria-label="Демонстрация карточки здоровья: Алексей, 38 лет, покрытие данных 72%, главный вопрос — кардиометаболический baseline, цель — энергия и продуктивность, слепая зона — динамика давления, три приоритета сейчас">
-      <div class="hm-head">
-        <div class="hm-persona">
-          <span class="nm">Алексей · 38 лет</span>
-        </div>
-        <div class="hm-badges">
-          <span class="tag tag-muted">DEMO DATA</span>
-          <span class="tag tag-green">Покрытие данных 72%</span>
-        </div>
-      </div>
-      <div class="hm-rows">
-        <div class="hm-row"><span class="lab">Главный вопрос</span><span class="val">Кардиометаболический baseline требует обновления.</span></div>
-        <div class="hm-row"><span class="lab">Ваша цель</span><span class="val">Сохранять энергию и рабочую продуктивность.</span></div>
-        <div class="hm-row"><span class="lab">Слепая зона</span><span class="val">Нет актуальной динамики давления.</span></div>
-      </div>
-      <div class="hm-priorities">
-        <span class="hm-pri-label">3 приоритета сейчас</span>
-        <div class="hm-pri-list">
-          <div class="hm-pri"><span class="n">01</span><span>Обновить baseline</span></div>
-          <div class="hm-pri"><span class="n">02</span><span>Подготовить вопрос для врача</span></div>
-          <div class="hm-pri"><span class="n">03</span><span>Продолжить recovery tracking</span></div>
-        </div>
-      </div>
-      <div class="hm-foot">
-        <a class="btn-mock" href="#coach">Обсудить с AI-коучем →</a>
-      </div>
+    <!-- +Life в центре, устройства и медзаключения вращаются вокруг -->
+    <div class="hero-orbit-wrap sr right d2">
+      <canvas id="heroOrbitCanvas" width="560" height="460" role="img" aria-label="Схема: +Life в центре, вокруг него на орбитах — анализы, медзаключения, часы, кольцо и сообщения"></canvas>
+      <p class="hero-orbit-fallback" id="heroOrbitFallback">+Life · анализы · медзаключения · часы · кольцо · сообщения</p>
     </div>
   </div>
+</section>
+
+<!-- ============================================================
+     §17.5 EVIDENCE STRIP — id="evidence" (перенесено сразу за hero)
+     ============================================================ -->
+<section class="evidence" id="evidence">
+  <h2 class="vh">Почему это важно: цена фрагментации и недообследованности</h2>
+  <div class="ev-grid">
+    <div class="ev-item sr d1">
+      <div class="ev-num">16%</div>
+      <div class="ev-label">предотвратимого вреда пациентам связано с диагностическими ошибками</div>
+      <div class="ev-source">WHO · World Patient Safety Day 2024</div>
+      <div class="ev-note">Системная оценка, а не вероятность ошибки конкретного врача.</div>
+      <div class="ev-help"><strong>Потенциально помогает:</strong> более полная и структурированная история может снижать риск решений на неполных данных.</div>
+    </div>
+    <div class="ev-item sr d2">
+      <div class="ev-num">46%</div>
+      <div class="ev-label">взрослых с гипертензией не знают о своём состоянии</div>
+      <div class="ev-source">WHO · Global report on hypertension</div>
+      <div class="ev-note">Пример недообследованности: риск остаётся невидимым без своевременного обследования.</div>
+      <div class="ev-help"><strong>Потенциально помогает:</strong> отслеживает динамику и напоминает об устаревших измерениях — слепые зоны вроде давления реже остаются незамеченными.</div>
+    </div>
+    <div class="ev-item sr d3">
+      <div class="ev-num">до 1/5</div>
+      <div class="ev-label">расходов на здравоохранение может приходиться на неэффективную помощь</div>
+      <div class="ev-source">OECD</div>
+      <div class="ev-note">Неэффективные траты системы в целом, а не «20% пациентов ходят не к тому врачу».</div>
+      <div class="ev-help"><strong>Потенциально помогает:</strong> чёткая подготовка к визиту и ясные приоритеты могут снижать число лишних или повторных исследований.</div>
+    </div>
+  </div>
+  <p class="ev-disclaimer sr d4">+Life не обещает устранить эти проблемы. Его задача значительно уже: уменьшить фрагментацию данных, улучшить подготовку пользователя и сделать следующий шаг более обоснованным.</p>
 </section>
 
 <!-- ============================================================
@@ -620,7 +118,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
   <div class="sec-inner">
     <div class="kicker sr">Почему это сложно</div>
     <h2 class="disp h2 sr d1">У вас уже достаточно данных.<br>Не хватает системы между ними.</h2>
-    <p class="body-copy sr d2 h2-gap">Здоровье сегодня распределено между врачами, лабораториями, часами, приложениями и AI-чатами. Каждый источник может быть полезен — но каждый видит только часть контекста.</p>
+    <p class="body-copy sr d2 h2-gap">Здоровье сегодня распределено между врачами, лабораториями, часами, приложениями и ИИ-чатами. Каждый источник может быть полезен — но каждый видит только часть контекста.</p>
 
     <div class="prob-visual">
 
@@ -632,12 +130,12 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
         </div>
         <div class="prob-vis sr right" aria-hidden="true">
           <div class="pv-sources">
-            <div class="pv-chip"><span class="l">Умное кольцо</span><span class="v">Readiness 87</span></div>
+            <div class="pv-chip"><span class="l">Умное кольцо</span><span class="v">Готовность 87</span></div>
             <div class="pv-chip"><span class="l">Анализ крови</span><span class="v warn">Ферритин ↓</span></div>
-            <div class="pv-chip"><span class="l">Носимое устройство</span><span class="v">Sleep 8ч 04м</span></div>
+            <div class="pv-chip"><span class="l">Носимое устройство</span><span class="v">Сон 8ч 04м</span></div>
             <div class="pv-chip"><span class="l">Клиника</span><span class="v">PDF-заключение</span></div>
           </div>
-          <div class="pv-converge"><span class="pv-line"></span><span class="pv-center">+Life context</span><span class="pv-line"></span></div>
+          <div class="pv-converge"><span class="pv-line"></span><span class="pv-center">Контекст +Life</span><span class="pv-line"></span></div>
         </div>
       </div>
 
@@ -662,7 +160,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
       <!-- Row 03 / GENERIC AI -->
       <div class="prob-row">
         <div class="sr left">
-          <div class="prob-index">03 / Обычный AI</div>
+          <div class="prob-index">03 / Обычный ИИ</div>
           <h3>Ответить на вопрос — не то же самое, что вести здоровье.</h3>
         </div>
         <div class="prob-vis sr right" style="padding:0" aria-hidden="true">
@@ -693,34 +191,6 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 
     </div>
   </div>
-</section>
-
-<!-- ============================================================
-     §17.5 EVIDENCE STRIP — id="evidence"
-     ============================================================ -->
-<section class="evidence" id="evidence">
-  <h2 class="vh">Почему это важно: цена фрагментации и недообследованности</h2>
-  <div class="ev-grid">
-    <div class="ev-item sr d1">
-      <div class="ev-num">16%</div>
-      <div class="ev-label">предотвратимого вреда пациентам связано с диагностическими ошибками</div>
-      <div class="ev-source">WHO · World Patient Safety Day 2024</div>
-      <div class="ev-note">Системная оценка, а не вероятность ошибки конкретного врача.</div>
-    </div>
-    <div class="ev-item sr d2">
-      <div class="ev-num">46%</div>
-      <div class="ev-label">взрослых с гипертензией не знают о своём состоянии</div>
-      <div class="ev-source">WHO · Global report on hypertension</div>
-      <div class="ev-note">Пример недообследованности: риск остаётся невидимым без своевременного обследования.</div>
-    </div>
-    <div class="ev-item sr d3">
-      <div class="ev-num">до 1/5</div>
-      <div class="ev-label">расходов на здравоохранение может приходиться на wasteful care</div>
-      <div class="ev-source">OECD</div>
-      <div class="ev-note">Неэффективные траты системы в целом, а не «20% пациентов ходят не к тому врачу».</div>
-    </div>
-  </div>
-  <p class="ev-disclaimer sr d4">+Life не обещает устранить эти проблемы. Его задача значительно уже: уменьшить фрагментацию данных, улучшить подготовку пользователя и сделать следующий шаг более обоснованным.</p>
 </section>
 
 <!-- ============================================================
@@ -762,7 +232,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
         <p class="body-copy sr d3" style="margin-top:20px">+Life работает с медицинскими данными пользователя и опирается на структурированные клинические правила, протоколы и проверяемые источники.</p>
       </div>
       <div class="sr right d2">
-        <div class="hmap-mock" aria-label="Демонстрация карты здоровья во времени: LDL-C, RHR и длительность сна за 2024–2026 годы, три документа">
+        <div class="hmap-mock" aria-label="Демонстрация карты здоровья во времени: LDL-C, частота пульса покоя и длительность сна за 2024–2026 годы, три документа">
           <div class="hmap-timeline"><span>2024</span><span>2025</span><span>2026</span></div>
           <div class="hmap-series">
             <div class="hmap-row">
@@ -771,7 +241,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
               <span class="last">102 мг/дл <span style="color:var(--amber)" aria-hidden="true">↑</span><span class="vh">выше целевого диапазона</span></span>
             </div>
             <div class="hmap-row">
-              <span class="nm">RHR</span>
+              <span class="nm">ЧСС покоя</span>
               <svg viewBox="0 0 200 34" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,20 40,18 80,22 120,14 160,12 200,10" fill="none" stroke="#39ff6e" stroke-width="2"/></svg>
               <span class="last">58 уд/мин</span>
             </div>
@@ -783,7 +253,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
           </div>
           <div class="hmap-foot">
             <span class="hmap-source">Источник: <strong>анализ крови · 12.05.2026</strong></span>
-            <span style="display:flex;gap:8px"><span class="tag tag-muted">DEMO DATA</span><span class="tag tag-muted">3 документа</span></span>
+            <span style="display:flex;gap:8px"><span class="tag tag-muted">ПРИМЕР ДАННЫХ</span><span class="tag tag-muted">3 документа</span></span>
           </div>
         </div>
       </div>
@@ -796,13 +266,13 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
      ============================================================ -->
 <section class="sec s-light" id="coach">
   <div class="sec-inner">
-    <div class="kicker sr">Health Coach</div>
+    <div class="kicker sr">ИИ-коуч</div>
     <h2 class="disp h2 sr d1">Сначала понять ситуацию. Потом отвечать.</h2>
-    <p class="body-copy sr d2 h2-gap">Health Coach получает уже структурированный контекст — а не пытается восстановить медицинскую историю из последних сообщений.</p>
-    <p class="body-copy sr d3" style="margin-top:14px">Health Coach — это не живой человек, а AI поверх вашей карты здоровья: доступен в любой момент, помнит историю целиком и не забывает про отложенный риск, даже если разговор ушёл в сторону. Решения, которые требуют врача, он не принимает — а готовит к ним.</p>
+    <p class="body-copy sr d2 h2-gap">ИИ-коуч получает уже структурированный контекст — а не пытается восстановить медицинскую историю из последних сообщений.</p>
+    <p class="body-copy sr d3" style="margin-top:14px">ИИ-коуч — это не живой человек, а модель поверх вашей карты здоровья: доступна в любой момент, помнит историю целиком и не забывает про отложенный риск, даже если разговор ушёл в сторону. Решения, которые требуют врача, она не принимает — а готовит к ним.</p>
 
     <div class="coach-flow">
-      <div class="coach-step sr d1"><span class="cs-n">01</span><span class="cs-lab">Читает canonical health context</span><span class="cs-body">Начинает с того, что уже известно о вас — не с чистого листа.</span></div>
+      <div class="coach-step sr d1"><span class="cs-n">01</span><span class="cs-lab">Читает единую карту здоровья</span><span class="cs-body">Начинает с того, что уже известно о вас — не с чистого листа.</span></div>
       <div class="coach-step sr d1"><span class="cs-n">02</span><span class="cs-lab">Проверяет качество и актуальность</span><span class="cs-body">Смотрит, не устарели ли данные и можно ли им доверять.</span></div>
       <div class="coach-step sr d2"><span class="cs-n">03</span><span class="cs-lab">Определяет слепые зоны</span><span class="cs-body">Отмечает, чего не хватает для полной картины.</span></div>
       <div class="coach-step sr d2"><span class="cs-n">04</span><span class="cs-lab">Выделяет 3–5 главных вопросов</span><span class="cs-body">Отбирает несколько вещей, которые важны прямо сейчас — не десятки сигналов сразу.</span></div>
@@ -810,7 +280,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
       <div class="coach-step sr d3"><span class="cs-n">06</span><span class="cs-lab">Не скрывает риск при смене темы</span><span class="cs-body">Серьёзный сигнал остаётся в поле зрения, даже если разговор ушёл в другую сторону.</span></div>
     </div>
 
-    <div class="kicker sr block-gap short">AI, который умеет сказать «сначала нужно проверить другое»</div>
+    <div class="kicker sr block-gap short">ИИ, который умеет сказать «сначала нужно проверить другое»</div>
     <div class="compare sr d1">
       <div class="compare-col">
         <span class="cc-head">Чат общего назначения</span>
@@ -824,7 +294,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
         </ul>
       </div>
       <div class="compare-col hl">
-        <span class="cc-head">+Life Health Coach</span>
+        <span class="cc-head">+Life · ИИ-коуч</span>
         <div class="cc-bubble a">«Прежде чем обсуждать вмешательство, я бы не делал вывод только из этого результата. Показатель взят из анализа от 12 мая, а для полноценной оценки сейчас не хватает A и B. Один из вариантов — сначала закрыть эти данные и обсудить результат со специалистом. Я могу подготовить список данных и вопросов к визиту.»</div>
         <ol class="cc-steps">
           <li><span class="n">01</span>Проверяет актуальные данные</li>
@@ -832,7 +302,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
           <li><span class="n">03</span>Видит, что важной части данных не хватает</li>
           <li><span class="n">04</span>Не принимает гипотезу пользователя как факт</li>
           <li><span class="n">05</span>Формирует следующий шаг</li>
-          <li><span class="n">06</span>При необходимости создаёт doctor gate — прямо говорит, что решение остаётся за врачом</li>
+          <li><span class="n">06</span>При необходимости передаёт решение врачу — прямо говорит об этом, а не решает сама</li>
         </ol>
         <button type="button" class="btn-mock" id="coachDemoBtn" style="align-self:flex-start;margin-top:4px">Открыть демо-диалог</button>
       </div>
@@ -867,7 +337,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 
       <div class="sr right d2">
         <div class="dp-export">
-          <div class="dp-export-head"><span class="t">Кардиолог · подготовка к визиту</span><span class="g">DEMO DATA</span></div>
+          <div class="dp-export-head"><span class="t">Кардиолог · подготовка к визиту</span><span class="g">ПРИМЕР ДАННЫХ</span></div>
           <div class="dp-field">
             <span class="lab">Цель визита</span>
             <p class="val">Оценить долгосрочный сердечно-сосудистый риск и определить, достаточно ли текущей стратегии наблюдения.</p>
@@ -906,7 +376,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
     <h2 class="disp h2 sr d1">Ваш план не заканчивается после одного анализа.</h2>
 
     <div class="rm-timeline sr d1">
-      <div class="rm-stop"><span class="when">Сейчас</span><span class="what">Закрыть baseline</span></div>
+      <div class="rm-stop"><span class="when">Сейчас</span><span class="what">Закрыть базовые показатели</span></div>
       <div class="rm-stop"><span class="when">30 дней</span><span class="what">Оценить данные</span></div>
       <div class="rm-stop"><span class="when">90 дней</span><span class="what">Контрольная точка</span></div>
       <div class="rm-stop"><span class="when">2027</span><span class="what">Возрастной скрининг</span></div>
@@ -923,7 +393,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
         <div class="tags"><span class="tag tag-muted">По результатам предыдущего шага</span></div>
       </div>
       <div class="rm-task sr d3">
-        <p class="t">Обсудить конкретный вопрос с врачом и начать короткий lifestyle-эксперимент.</p>
+        <p class="t">Обсудить конкретный вопрос с врачом и начать короткий эксперимент с образом жизни.</p>
         <div class="tags"><span class="tag tag-muted">Базовая профилактика</span></div>
       </div>
     </div>
@@ -943,26 +413,26 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
       <div class="ch-card sr d1">
         <div class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4 8.6 8.6 0 0 1-3.3-.6L3 21l1.7-5.6a8.4 8.4 0 0 1-.6-3.4A8.4 8.4 0 0 1 12.5 3a8.5 8.5 0 0 1 8.5 8.5z"/></svg></div>
         <h3>Мессенджер</h3>
-        <p>Спросить, отправить документ, отметить check-in или сообщить о результате визита.</p>
+        <p>Спросить, отправить документ, отметить самочувствие или сообщить о результате визита.</p>
       </div>
       <div class="ch-card sr d2">
         <div class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
-        <h3>Web</h3>
-        <p>Посмотреть всю картину: дашборды, документы, большие таблицы, историю и sensitive-детали.</p>
+        <h3>Веб-версия</h3>
+        <p>Посмотреть всю картину: дашборды, медзаключения, большие таблицы, историю и чувствительные данные.</p>
       </div>
       <div class="ch-card sr d3">
         <div class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 8v6M4 12H2m20 0h-2"/><circle cx="12" cy="12" r="4"/></svg></div>
         <h3>Источники данных</h3>
-        <p>Подключить существующие данные — лаборатории, документы, носимые устройства, анкеты.</p>
+        <p>Подключить существующие данные — лаборатории, медзаключения, носимые устройства, анкеты.</p>
       </div>
     </div>
 
     <div class="orbit-wrap">
-      <canvas id="orbitCanvas" width="520" height="340" aria-hidden="true"></canvas>
-      <p class="orbit-fallback" id="orbitFallback">+Life · лаборатория · документы · часы · кольцо · весы</p>
+      <canvas id="orbitCanvas" width="520" height="340" role="img" aria-label="Схема: +Life в центре, вокруг него на орбитах — лаборатория, медзаключения, часы, кольцо и весы"></canvas>
+      <p class="orbit-fallback" id="orbitFallback">+Life · лаборатория · медзаключения · часы · кольцо · весы</p>
     </div>
     <p class="orbit-more">+ другие источники</p>
-    <p class="body-sm" style="margin-top:24px;max-width:var(--para-max)">+Life объединяет данные из основных wearable-экосистем и медицинских источников; список интеграций расширяется.</p>
+    <p class="body-sm" style="margin-top:24px;max-width:var(--para-max)">+Life объединяет данные из основных экосистем носимых устройств и медицинских источников; список интеграций расширяется.</p>
   </div>
 </section>
 
@@ -977,19 +447,19 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
     <div class="trust-grid">
       <div class="trust-principles sr d1">
         <div class="tp"><div class="t">Ваши данные</div><div class="d">Данные принадлежат вам: вы сами решаете, что загружать, можете выгрузить или удалить их в любой момент. Мы не используем их для обучения моделей без вашего согласия.</div></div>
-        <div class="tp"><div class="t">Источник</div><div class="d">Каждый значимый факт должен иметь provenance: документ, дату, показатель и уровень уверенности.</div></div>
+        <div class="tp"><div class="t">Источник</div><div class="d">Каждый значимый факт должен иметь происхождение: документ, дату, показатель и уровень уверенности.</div></div>
         <div class="tp"><div class="t">Неопределённость</div><div class="d">«Не знаю» — допустимый результат, а не сбой системы.</div></div>
-        <div class="tp"><div class="t">Ограничения</div><div class="d">Treatment decisions могут требовать врача — +Life не принимает их вместо него.</div></div>
+        <div class="tp"><div class="t">Ограничения</div><div class="d">Решения о лечении могут требовать врача — +Life не принимает их вместо него.</div></div>
         <div class="tp"><div class="t">История</div><div class="d">Изменения и решения остаются проверяемыми во времени.</div></div>
       </div>
 
       <div class="sr right d2">
-        <div class="evidence-card" aria-label="Пример insight с указанием источника: LDL-C 4.1 ммоль/л, источник — анализ крови от 12 мая 2026, проверено по оригиналу, динамика — 3 измерения, вывод protocol-supported, уверенность средняя">
-          <div class="ec-head"><span class="ec-metric">LDL-C · 4.1 ммоль/л</span><span class="tag tag-muted">ПРИМЕР</span><span class="ec-source">Анализ крови · 12.05.2026</span></div>
+        <div class="evidence-card" aria-label="Пример insight с указанием источника: LDL-C 4.1 ммоль/л, источник — анализ крови от 12 мая 2026, проверено по оригиналу, динамика — 3 измерения, вывод — соответствует протоколу, уверенность средняя">
+          <div class="ec-head"><span class="ec-metric">LDL-C · 4.1 ммоль/л</span><span class="tag tag-muted">ПРИМЕР ДАННЫХ</span><span class="ec-source">Анализ крови · 12.05.2026</span></div>
           <div class="ec-rows">
             <div class="ec-row"><span class="lab">Проверка</span><span class="val">Проверено по оригиналу</span></div>
             <div class="ec-row"><span class="lab">Динамика</span><span class="val">3 измерения</span></div>
-            <div class="ec-row"><span class="lab">Вывод</span><span class="val">Protocol-supported</span></div>
+            <div class="ec-row"><span class="lab">Вывод</span><span class="val">Соответствует протоколу</span></div>
           </div>
           <div class="ec-conf">
             <div class="ec-conf-row"><span class="lab">Уверенность</span><span class="tag tag-amber">Средняя</span></div>
@@ -1002,32 +472,80 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 </section>
 
 <!-- ============================================================
-     §17.13 FOR WHOM / SEGMENTS — id="segments"
+     §17.13 FOR WHOM / PERSONAS — id="segments"
      ============================================================ -->
 <section class="sec s-dark" id="segments">
   <div class="sec-inner">
     <div class="kicker sr">Для кого</div>
-    <h2 class="disp h2 sr d1">Три разных старта. Одна и та же проблема — отсутствие системы.</h2>
+    <h2 class="disp h2 sr d1">Четыре разных старта. Одна и та же проблема — отсутствие системы.</h2>
 
-    <div class="seg-grid">
-      <div class="seg-col sr d1">
-        <span class="lab">Сегмент 1</span>
+    <div class="persona-grid">
+
+      <a class="persona-card sr d1" href="segment-1.html">
+        <div class="persona-figure" aria-hidden="true">
+          <svg class="fig" viewBox="0 0 64 96" fill="none" aria-hidden="true">
+            <circle cx="32" cy="18" r="26" stroke="currentColor" stroke-width="1" opacity=".18" stroke-dasharray="2 4"/>
+            <circle class="skin" cx="32" cy="18" r="11" stroke-width="1.8"/>
+            <path class="skin" d="M12 92c0-26 8-40 20-40s20 14 20 40" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span class="persona-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        </div>
+        <span class="lab">Сценарий 1</span>
         <h3>«Не хочу пропустить важное»</h3>
-        <p>Здоровье пока в целом нормальное, но непонятно, с чего начать системное наблюдение — обычный «чекап на всё» кажется бессистемным.</p>
-        <p>Результат: возрастной превентивный roadmap, ясные слепые зоны и несколько следующих шагов — без необходимости становиться биохакером.</p>
-      </div>
-      <div class="seg-col sr d2">
-        <span class="lab">Сегмент 2</span>
+        <p>Здоровье пока в целом нормальное, но неясно, с чего начать системное наблюдение.</p>
+        <span class="persona-more">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="persona-card sr d2" href="segment-2.html">
+        <div class="persona-figure" aria-hidden="true">
+          <svg class="fig" viewBox="0 0 64 96" fill="none" aria-hidden="true">
+            <circle cx="10" cy="8" r="2" fill="currentColor" opacity=".45"/>
+            <circle cx="55" cy="12" r="2.2" fill="currentColor" opacity=".45"/>
+            <circle cx="6" cy="34" r="1.6" fill="currentColor" opacity=".35"/>
+            <circle cx="58" cy="32" r="1.8" fill="currentColor" opacity=".4"/>
+            <circle class="skin" cx="32" cy="18" r="11" stroke-width="1.8"/>
+            <path class="skin" d="M12 92c0-26 8-40 20-40s20 14 20 40" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span class="persona-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 3 21 8.5 12 14 3 8.5"/><polyline points="3 14.5 12 20 21 14.5"/></svg></span>
+        </div>
+        <span class="lab">Сценарий 2</span>
         <h3>«У меня уже слишком много данных»</h3>
-        <p>Данные из часов, анализов и разных клиник существуют отдельно друг от друга — общей картины и динамики во времени нет.</p>
-        <p>Результат: единый источник, нормализованные показатели, рабочие гипотезы и карта покрытия — с историей для разговора с врачом.</p>
-      </div>
-      <div class="seg-col sr d3">
-        <span class="lab">Сегмент 3</span>
-        <h3>«Я хочу свой Health OS»</h3>
-        <p>Хочется собственную превентивную систему здоровья, но месяцами собирать агентов, базы и интеграции самостоятельно — не вариант.</p>
-        <p>Результат: то, что энтузиасты собирают из десятка инструментов, — как готовый продукт. Первичный сбор качественных данных всё равно требует вашего участия.</p>
-      </div>
+        <p>Часы, анализы и разные клиники живут отдельно друг от друга.</p>
+        <span class="persona-more">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="persona-card sr d3" href="segment-3.html">
+        <div class="persona-figure" aria-hidden="true">
+          <svg class="fig" viewBox="0 0 64 96" fill="none" aria-hidden="true">
+            <rect x="4" y="4" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1" opacity=".3"/>
+            <rect x="50" y="10" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1" opacity=".3" stroke-dasharray="2 2"/>
+            <circle class="skin" cx="32" cy="18" r="11" stroke-width="1.8"/>
+            <path class="skin" d="M12 92c0-26 8-40 20-40s20 14 20 40" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span class="persona-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/><path d="M15 15h5v5h-5z" stroke-dasharray="2 2"/></svg></span>
+        </div>
+        <span class="lab">Сценарий 3</span>
+        <h3>«Хочу свою систему здоровья»</h3>
+        <p>Собирать её из десятка инструментов месяцами — не вариант.</p>
+        <span class="persona-more">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
+      <a class="persona-card sr d4" href="segment-4.html">
+        <div class="persona-figure" aria-hidden="true">
+          <svg class="fig" viewBox="0 0 64 96" fill="none" aria-hidden="true">
+            <path d="M4 10h12M4 16h9M4 22h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".3"/>
+            <path d="M48 8h12M48 14h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".3"/>
+            <circle class="skin" cx="32" cy="18" r="11" stroke-width="1.8"/>
+            <path class="skin" d="M12 92c0-26 8-40 20-40s20 14 20 40" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span class="persona-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h9M4 12h9M4 18h5"/><path d="M18 15l1.3 2.6 2.9.4-2.1 2 .5 2.9-2.6-1.4-2.6 1.4.5-2.9-2.1-2 2.9-.4z"/></svg></span>
+        </div>
+        <span class="lab">Сценарий 4</span>
+        <h3>«У меня уже есть своя система здоровья»</h3>
+        <p>Выводов и гипотез уже много — непонятно, с чем работать в первую очередь.</p>
+        <span class="persona-more">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+
     </div>
   </div>
 </section>
@@ -1103,7 +621,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
      anchors и явно помечаем это место как конфигурационное.
      ============================================================ */
   var PRIMARY_CTA_URL = "#onboarding";   // основной conversion-путь: "Начать" / "Собрать карту здоровья" / "Начать с моих данных"
-  var PRODUCT_DEMO_URL = "#coach";       // "Посмотреть продукт" (finalCTA secondary) — ведёт к демонстрации Health Coach
+  var PRODUCT_DEMO_URL = "#coach";       // "Посмотреть продукт" (finalCTA secondary) — ведёт к демонстрации ИИ-коуча
 
   document.querySelectorAll('[data-cta="primary"]').forEach(function(el){ el.setAttribute('href', PRIMARY_CTA_URL); });
   document.querySelectorAll('[data-cta="demo"]').forEach(function(el){ el.setAttribute('href', PRODUCT_DEMO_URL); });
@@ -1205,58 +723,58 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
   }
 
   /* ============================================================
-     §17.11 ORBIT CANVAS — центр +Life, источники на тонких орбитах
+     ORBIT CANVAS FACTORY — центр +Life, источники на тонких орбитах.
      Медленное, спокойное движение. Пауза вне viewport и при
-     prefers-reduced-motion.
+     prefers-reduced-motion. Используется и в hero, и в §17.11.
      ============================================================ */
-  var orbitCanvas = document.getElementById('orbitCanvas');
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (orbitCanvas && orbitCanvas.getContext && !reducedMotion){
-    var octx = orbitCanvas.getContext('2d');
-    var oRunning = false, oRaf = null;
-    var labels = ['Лаборатория','Документ','Часы','Кольцо','Весы'];
-    var icons = [
-      // simple glyph paths drawn manually as small shapes, keyed by index
-    ];
-    function sizeOrbit(){
-      var rect = orbitCanvas.getBoundingClientRect();
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      orbitCanvas.width = rect.width * dpr;
-      orbitCanvas.height = rect.height * dpr;
-      octx.setTransform(dpr,0,0,dpr,0,0);
+  function initOrbit(canvas, fallback, labels){
+    if (!canvas || !canvas.getContext || reducedMotion){
+      if (fallback) fallback.style.display = 'block';
+      if (canvas) canvas.style.display = 'none';
+      return;
     }
-    sizeOrbit();
-    window.addEventListener('resize', sizeOrbit);
+    var ctx = canvas.getContext('2d');
+    var running = false, raf = null;
 
-    function drawOrbit(t){
-      var rect = orbitCanvas.getBoundingClientRect();
+    function size(){
+      var rect = canvas.getBoundingClientRect();
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    size();
+    window.addEventListener('resize', size);
+
+    function draw(t){
+      var rect = canvas.getBoundingClientRect();
       var w = rect.width, h = rect.height;
       var cx = w/2, cy = h/2;
-      octx.clearRect(0,0,w,h);
+      ctx.clearRect(0,0,w,h);
 
       var radii = [Math.min(w,h)*0.22, Math.min(w,h)*0.34, Math.min(w,h)*0.44];
       radii.forEach(function(r){
-        octx.beginPath();
-        octx.arc(cx, cy, r, 0, Math.PI*2);
-        octx.strokeStyle = 'rgba(255,255,255,0.08)';
-        octx.lineWidth = 1;
-        octx.stroke();
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI*2);
+        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
       });
 
-      // center node
-      octx.beginPath();
-      octx.arc(cx, cy, 15, 0, Math.PI*2);
-      octx.fillStyle = 'rgba(57,255,110,0.14)';
-      octx.fill();
-      octx.strokeStyle = 'rgba(57,255,110,0.5)';
-      octx.lineWidth = 1.2;
-      octx.stroke();
-      octx.fillStyle = '#39ff6e';
-      octx.font = '10px DM Mono, monospace';
-      octx.textAlign = 'center';
-      octx.textBaseline = 'middle';
-      octx.fillText('+Life', cx, cy);
+      ctx.beginPath();
+      ctx.arc(cx, cy, 17, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(57,255,110,0.14)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(57,255,110,0.5)';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+      ctx.fillStyle = '#39ff6e';
+      ctx.font = '11px DM Mono, monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('+Life', cx, cy);
 
       var n = labels.length;
       for (var i=0;i<n;i++){
@@ -1267,49 +785,56 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
         var x = cx + Math.cos(angle) * r;
         var y = cy + Math.sin(angle) * r;
 
-        octx.beginPath();
-        octx.moveTo(cx,cy);
-        octx.lineTo(x,y);
-        octx.strokeStyle = 'rgba(57,255,110,0.12)';
-        octx.lineWidth = 1;
-        octx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(cx,cy);
+        ctx.lineTo(x,y);
+        ctx.strokeStyle = 'rgba(57,255,110,0.12)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
 
-        octx.beginPath();
-        octx.arc(x, y, 5, 0, Math.PI*2);
-        octx.fillStyle = '#171717';
-        octx.fill();
-        octx.strokeStyle = 'rgba(255,255,255,0.25)';
-        octx.lineWidth = 1;
-        octx.stroke();
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI*2);
+        ctx.fillStyle = '#171717';
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
 
-        octx.fillStyle = 'rgba(154,150,145,0.9)';
-        octx.font = '9px DM Mono, monospace';
-        octx.textAlign = 'center';
-        octx.fillText(labels[i], x, y - 12);
+        ctx.fillStyle = 'rgba(154,150,145,0.9)';
+        ctx.font = '9px DM Mono, monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(labels[i], x, y - 12);
       }
     }
 
     function loop(t){
-      if (!oRunning) return;
-      drawOrbit(t);
-      oRaf = requestAnimationFrame(loop);
+      if (!running) return;
+      draw(t);
+      raf = requestAnimationFrame(loop);
     }
-    function start(){ if (!oRunning){ oRunning = true; oRaf = requestAnimationFrame(loop); } }
-    function stop(){ oRunning = false; if (oRaf) cancelAnimationFrame(oRaf); }
+    function start(){ if (!running){ running = true; raf = requestAnimationFrame(loop); } }
+    function stop(){ running = false; if (raf) cancelAnimationFrame(raf); }
 
     if ('IntersectionObserver' in window){
-      var oObs = new IntersectionObserver(function(entries){
+      var obs = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){ if (entry.isIntersecting) start(); else stop(); });
       }, {threshold:0});
-      oObs.observe(orbitCanvas);
+      obs.observe(canvas);
     } else {
       start();
     }
-  } else {
-    var fb = document.getElementById('orbitFallback');
-    if (fb) fb.style.display = 'block';
-    if (orbitCanvas) orbitCanvas.style.display = 'none';
   }
+
+  initOrbit(
+    document.getElementById('heroOrbitCanvas'),
+    document.getElementById('heroOrbitFallback'),
+    ['Анализы','Медзаключения','Часы','Кольцо','Сообщения']
+  );
+  initOrbit(
+    document.getElementById('orbitCanvas'),
+    document.getElementById('orbitFallback'),
+    ['Лаборатория','Медзаключения','Часы','Кольцо','Весы']
+  );
 
   /* ============================================================
      §17.15 FINAL CTA CANVAS — мягкое поле связанных точек
