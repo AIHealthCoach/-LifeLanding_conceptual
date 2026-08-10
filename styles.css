@@ -495,11 +495,19 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 @media (max-width:600px){.persona-grid{grid-template-columns:1fr}}
 .persona-card{background:var(--ui-card);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;gap:16px;transition:border-color .25s var(--ease)}
 .persona-card:hover{border-color:rgba(57,255,110,.3)}
-.persona-figure{position:relative;width:100%;height:150px;display:flex;align-items:center;justify-content:center}
-.persona-figure svg.fig{width:78px;height:130px;color:var(--text-dark-secondary);overflow:visible}
-.persona-figure svg.fig .skin{stroke:var(--green);opacity:.95}
-.persona-figure svg.fig .fill{fill:rgba(57,255,110,.07)}
-.persona-badge{position:absolute;top:6px;right:calc(50% - 64px);width:30px;height:30px;border-radius:9px;background:var(--green-a);border:1px solid rgba(57,255,110,.3);display:flex;align-items:center;justify-content:center;color:var(--green)}
+.persona-photo{position:relative;width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:var(--ui-muted);margin-bottom:6px}
+.persona-photo img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;display:block;
+  filter:grayscale(.2) contrast(1.05) saturate(.85) brightness(.96);
+  transition:filter .3s var(--ease),transform .4s var(--ease);
+  opacity:0;animation:personaPhotoIn .4s var(--ease) .05s forwards;
+}
+.persona-card:hover .persona-photo img{filter:grayscale(0) contrast(1.08) saturate(1) brightness(1);transform:scale(1.03)}
+.persona-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,9,11,0) 60%,rgba(9,9,11,.5) 100%);pointer-events:none}
+@keyframes personaPhotoIn{to{opacity:1}}
+.persona-photo.img-error img{display:none}
+.persona-photo.img-error::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,var(--ui-card),var(--ui-muted))}
+.persona-badge{position:absolute;z-index:1;top:10px;right:10px;width:30px;height:30px;border-radius:9px;background:rgba(9,9,11,.55);backdrop-filter:blur(4px);border:1px solid rgba(57,255,110,.35);display:flex;align-items:center;justify-content:center;color:var(--green)}
 .persona-card h3{font-family:var(--f-display);font-size:19px;line-height:1.25;color:var(--text-dark-primary)}
 .persona-card .lab{font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dark-tertiary)}
 .persona-card p{font-family:var(--f-body);font-size:13px;line-height:1.6;color:var(--text-dark-secondary);flex:1}
