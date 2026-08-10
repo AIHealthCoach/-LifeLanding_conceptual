@@ -43,6 +43,20 @@
   }
 
   /* ============================================================
+     NAV FEATURES DROPDOWN ("Функции продукта")
+     ============================================================ */
+  var navFeatures = document.getElementById('navFeatures');
+  if (navFeatures){
+    navFeatures.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ navFeatures.open = false; });
+    });
+    document.addEventListener('click', function(e){
+      if (navFeatures.open && !navFeatures.contains(e.target)) navFeatures.open = false;
+    });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') navFeatures.open = false; });
+  }
+
+  /* ============================================================
      SCROLL REVEAL
      ============================================================ */
   var reveal = document.querySelectorAll('.sr');

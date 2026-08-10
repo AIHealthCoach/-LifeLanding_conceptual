@@ -31,7 +31,18 @@
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks"><span></span></button>
   <div class="nav-links" id="navLinks">
-    <a href="#solution">Как работает</a>
+    <details class="nav-features" id="navFeatures">
+      <summary>Функции продукта<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+      <div class="nav-features-panel">
+        <a href="#solution">Как это работает</a>
+        <a href="#health-map">Единая карта здоровья</a>
+        <a href="#coach">ИИ-коуч</a>
+        <a href="#doctor-prep">Подготовка к врачу</a>
+        <a href="#roadmap">Превентивный план</a>
+        <a href="#channels">Каналы связи</a>
+        <a href="#trust">Доверие и источники</a>
+      </div>
+    </details>
     <a href="#doctor-prep">Для врача</a>
     <a href="#trust">Безопасность</a>
     <a href="#segments">Для кого</a>
@@ -46,8 +57,14 @@
      ============================================================ -->
 <section class="hero" id="hero">
   <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-grid">
-    <div>
+
+  <div class="hero-inner">
+    <!-- +Life в центре, устройства и медзаключения вращаются вокруг, крупно и позади текста -->
+    <div class="hero-orbit-wrap sr right d2">
+      <canvas id="heroOrbitCanvas" width="820" height="820" role="img" aria-label="Схема: +Life в центре, вокруг него на орбитах — анализы, медзаключения, часы, кольцо, браслет, весы, тонометр, глюкометр и сообщения"></canvas>
+      <p class="hero-orbit-fallback" id="heroOrbitFallback">+Life · анализы · медзаключения · часы · кольцо · браслет · весы · тонометр · глюкометр · сообщения</p>
+    </div>
+    <div class="hero-content">
       <div class="kicker sr short">+Life · Персональная система здоровья</div>
       <h1 class="disp h1 sr d1">Ваш комплексный ИИ-помощник<br>в профилактике <em>здоровья</em>.</h1>
       <p class="lead hero-lead sr d2">Хранит анализы и заключения в одном месте, готовит к визиту к врачу и подсказывает, что стоит уточнить, если заключение показалось неполным или противоречивым. Предлагает понятную программу действий для ваших рисков — и остаётся на связи в мессенджере, когда что-то меняется.</p>
@@ -61,21 +78,6 @@
         <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>История изменений</span>
         <span class="it"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M6 6l1.4 1.4M16.6 16.6 18 18M6 18l1.4-1.4M16.6 7.4 18 6"/></svg>Уровни уверенности</span>
       </div>
-      <div class="hero-picker sr d4">
-        <span class="lab">Похоже на вас?</span>
-        <div class="hero-picker-row">
-          <a class="hero-pick" href="segment-1.html">Не хочу пропустить важное<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          <a class="hero-pick" href="segment-2.html">Уже много данных<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          <a class="hero-pick" href="segment-3.html">Хочу свою систему<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          <a class="hero-pick" href="segment-4.html">Уже есть своя система<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- +Life в центре, устройства и медзаключения вращаются вокруг -->
-    <div class="hero-orbit-wrap sr right d2">
-      <canvas id="heroOrbitCanvas" width="560" height="460" role="img" aria-label="Схема: +Life в центре, вокруг него на орбитах — анализы, медзаключения, часы, кольцо и сообщения"></canvas>
-      <p class="hero-orbit-fallback" id="heroOrbitFallback">+Life · анализы · медзаключения · часы · кольцо · сообщения</p>
     </div>
   </div>
 </section>
@@ -84,7 +86,10 @@
      §17.5 EVIDENCE STRIP — id="evidence" (перенесено сразу за hero)
      ============================================================ -->
 <section class="evidence" id="evidence">
-  <h2 class="vh">Почему это важно: цена фрагментации и недообследованности</h2>
+  <div class="ev-head">
+    <div class="kicker center sr short">Мировая статистика</div>
+    <h2 class="ev-h2 sr d1">Эти проблемы признаны на уровне мирового здравоохранения.</h2>
+  </div>
   <div class="ev-grid">
     <div class="ev-item sr d1">
       <div class="ev-num">16%</div>
@@ -108,7 +113,6 @@
       <div class="ev-help"><strong>Потенциально помогает:</strong> чёткая подготовка к визиту и ясные приоритеты могут снижать число лишних или повторных исследований.</div>
     </div>
   </div>
-  <p class="ev-disclaimer sr d4">+Life не обещает устранить эти проблемы. Его задача значительно уже: уменьшить фрагментацию данных, улучшить подготовку пользователя и сделать следующий шаг более обоснованным.</p>
 </section>
 
 <!-- ============================================================
@@ -483,10 +487,11 @@
 
       <a class="persona-card sr d1" href="segment-1.html">
         <div class="persona-figure" aria-hidden="true">
-          <svg class="fig" viewBox="0 0 64 96" fill="none" aria-hidden="true">
+          <svg class="fig" viewBox="0 0 64 108" fill="none" aria-hidden="true">
             <circle cx="32" cy="18" r="26" stroke="currentColor" stroke-width="1" opacity=".18" stroke-dasharray="2 4"/>
-            <circle class="skin" cx="32" cy="18" r="11" stroke-width="1.8"/>
-            <path class="skin" d="M12 92c0-26 8-40 20-40s20 14 20 40" stroke-width="1.8" stroke-linecap="round"/>
+            <circle class="skin fill" cx="32" cy="17" r="11.5" stroke-width="1.8"/>
+            <path class="skin fill" d="M32 29c-12 0-20 10-20 24v7h40v-7c0-14-8-24-20-24z" stroke-width="1.8" stroke-linejoin="round"/>
+            <path class="skin" d="M20 60v38M44 60v38" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
           <span class="persona-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
         </div>
@@ -498,13 +503,14 @@
 
       <a class="persona-card sr d2" href="segment-2.html">
         <div class="persona-figure" aria-hidden="true">
-          <svg class="fig" viewBox="0 0 64 96" fill="none" aria-hidden="true">
+          <svg class="fig" viewBox="0 0 64 108" fill="none" aria-hidden="true">
             <circle cx="10" cy="8" r="2" fill="currentColor" opacity=".45"/>
             <circle cx="55" cy="12" r="2.2" fill="currentColor" opacity=".45"/>
             <circle cx="6" cy="34" r="1.6" fill="currentColor" opacity=".35"/>
             <circle cx="58" cy="32" r="1.8" fill="currentColor" opacity=".4"/>
-            <circle class="skin" cx="32" cy="18" r="11" stroke-width="1.8"/>
-            <path class="skin" d="M12 92c0-26 8-40 20-40s20 14 20 40" stroke-width="1.8" stroke-linecap="round"/>
+            <circle class="skin fill" cx="32" cy="17" r="11.5" stroke-width="1.8"/>
+            <path class="skin fill" d="M32 29c-12 0-20 10-20 24v7h40v-7c0-14-8-24-20-24z" stroke-width="1.8" stroke-linejoin="round"/>
+            <path class="skin" d="M20 60v38M44 60v38" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
           <span class="persona-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 3 21 8.5 12 14 3 8.5"/><polyline points="3 14.5 12 20 21 14.5"/></svg></span>
         </div>
@@ -516,11 +522,12 @@
 
       <a class="persona-card sr d3" href="segment-3.html">
         <div class="persona-figure" aria-hidden="true">
-          <svg class="fig" viewBox="0 0 64 96" fill="none" aria-hidden="true">
+          <svg class="fig" viewBox="0 0 64 108" fill="none" aria-hidden="true">
             <rect x="4" y="4" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1" opacity=".3"/>
             <rect x="50" y="10" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1" opacity=".3" stroke-dasharray="2 2"/>
-            <circle class="skin" cx="32" cy="18" r="11" stroke-width="1.8"/>
-            <path class="skin" d="M12 92c0-26 8-40 20-40s20 14 20 40" stroke-width="1.8" stroke-linecap="round"/>
+            <circle class="skin fill" cx="32" cy="17" r="11.5" stroke-width="1.8"/>
+            <path class="skin fill" d="M32 29c-12 0-20 10-20 24v7h40v-7c0-14-8-24-20-24z" stroke-width="1.8" stroke-linejoin="round"/>
+            <path class="skin" d="M20 60v38M44 60v38" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
           <span class="persona-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/><path d="M15 15h5v5h-5z" stroke-dasharray="2 2"/></svg></span>
         </div>
@@ -532,11 +539,12 @@
 
       <a class="persona-card sr d4" href="segment-4.html">
         <div class="persona-figure" aria-hidden="true">
-          <svg class="fig" viewBox="0 0 64 96" fill="none" aria-hidden="true">
+          <svg class="fig" viewBox="0 0 64 108" fill="none" aria-hidden="true">
             <path d="M4 10h12M4 16h9M4 22h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".3"/>
             <path d="M48 8h12M48 14h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".3"/>
-            <circle class="skin" cx="32" cy="18" r="11" stroke-width="1.8"/>
-            <path class="skin" d="M12 92c0-26 8-40 20-40s20 14 20 40" stroke-width="1.8" stroke-linecap="round"/>
+            <circle class="skin fill" cx="32" cy="17" r="11.5" stroke-width="1.8"/>
+            <path class="skin fill" d="M32 29c-12 0-20 10-20 24v7h40v-7c0-14-8-24-20-24z" stroke-width="1.8" stroke-linejoin="round"/>
+            <path class="skin" d="M20 60v38M44 60v38" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
           <span class="persona-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h9M4 12h9M4 18h5"/><path d="M18 15l1.3 2.6 2.9.4-2.1 2 .5 2.9-2.6-1.4-2.6 1.4.5-2.9-2.1-2 2.9-.4z"/></svg></span>
         </div>
@@ -705,6 +713,20 @@
   }
 
   /* ============================================================
+     NAV FEATURES DROPDOWN ("Функции продукта")
+     ============================================================ */
+  var navFeatures = document.getElementById('navFeatures');
+  if (navFeatures){
+    navFeatures.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ navFeatures.open = false; });
+    });
+    document.addEventListener('click', function(e){
+      if (navFeatures.open && !navFeatures.contains(e.target)) navFeatures.open = false;
+    });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') navFeatures.open = false; });
+  }
+
+  /* ============================================================
      SCROLL REVEAL
      ============================================================ */
   var reveal = document.querySelectorAll('.sr');
@@ -729,12 +751,20 @@
      ============================================================ */
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function initOrbit(canvas, fallback, labels){
+  function initOrbit(canvas, fallback, labels, opts){
     if (!canvas || !canvas.getContext || reducedMotion){
       if (fallback) fallback.style.display = 'block';
       if (canvas) canvas.style.display = 'none';
       return;
     }
+    opts = opts || {};
+    var ringWidth = opts.ringWidth || 1;
+    var lineWidth = opts.lineWidth || 1;
+    var centerR = opts.centerR || 17;
+    var nodeR = opts.nodeR || 5;
+    var centerFont = opts.centerFont || 11;
+    var labelFont = opts.labelFont || 9;
+
     var ctx = canvas.getContext('2d');
     var running = false, raf = null;
 
@@ -754,24 +784,24 @@
       var cx = w/2, cy = h/2;
       ctx.clearRect(0,0,w,h);
 
-      var radii = [Math.min(w,h)*0.22, Math.min(w,h)*0.34, Math.min(w,h)*0.44];
+      var radii = [Math.min(w,h)*0.20, Math.min(w,h)*0.31, Math.min(w,h)*0.41];
       radii.forEach(function(r){
         ctx.beginPath();
         ctx.arc(cx, cy, r, 0, Math.PI*2);
-        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(255,255,255,0.09)';
+        ctx.lineWidth = ringWidth;
         ctx.stroke();
       });
 
       ctx.beginPath();
-      ctx.arc(cx, cy, 17, 0, Math.PI*2);
+      ctx.arc(cx, cy, centerR, 0, Math.PI*2);
       ctx.fillStyle = 'rgba(57,255,110,0.14)';
       ctx.fill();
-      ctx.strokeStyle = 'rgba(57,255,110,0.5)';
-      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = 'rgba(57,255,110,0.55)';
+      ctx.lineWidth = ringWidth + 0.4;
       ctx.stroke();
       ctx.fillStyle = '#39ff6e';
-      ctx.font = '11px DM Mono, monospace';
+      ctx.font = centerFont + 'px DM Mono, monospace';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText('+Life', cx, cy);
@@ -788,22 +818,22 @@
         ctx.beginPath();
         ctx.moveTo(cx,cy);
         ctx.lineTo(x,y);
-        ctx.strokeStyle = 'rgba(57,255,110,0.12)';
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(57,255,110,0.14)';
+        ctx.lineWidth = lineWidth;
         ctx.stroke();
 
         ctx.beginPath();
-        ctx.arc(x, y, 5, 0, Math.PI*2);
+        ctx.arc(x, y, nodeR, 0, Math.PI*2);
         ctx.fillStyle = '#171717';
         ctx.fill();
-        ctx.strokeStyle = 'rgba(255,255,255,0.25)';
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(255,255,255,0.28)';
+        ctx.lineWidth = lineWidth;
         ctx.stroke();
 
         ctx.fillStyle = 'rgba(154,150,145,0.9)';
-        ctx.font = '9px DM Mono, monospace';
+        ctx.font = labelFont + 'px DM Mono, monospace';
         ctx.textAlign = 'center';
-        ctx.fillText(labels[i], x, y - 12);
+        ctx.fillText(labels[i], x, y - nodeR - 7);
       }
     }
 
@@ -828,7 +858,8 @@
   initOrbit(
     document.getElementById('heroOrbitCanvas'),
     document.getElementById('heroOrbitFallback'),
-    ['Анализы','Медзаключения','Часы','Кольцо','Сообщения']
+    ['Анализы','Медзаключения','Часы','Кольцо','Браслет','Весы','Тонометр','Глюкометр','Сообщения'],
+    {ringWidth:1.4, lineWidth:1.4, centerR:26, nodeR:7, centerFont:14, labelFont:11}
   );
   initOrbit(
     document.getElementById('orbitCanvas'),

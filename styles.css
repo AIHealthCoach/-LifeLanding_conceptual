@@ -240,14 +240,35 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
   .nav-toggle{display:inline-flex}
 }
 
+/* ---- nav feature dropdown ("Функции продукта") ---- */
+.nav-features{position:relative}
+.nav-features summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-dark-secondary)}
+.nav-features summary::-webkit-details-marker{display:none}
+.nav-features summary:hover{color:var(--text-dark-primary)}
+.nav-features summary .chev{width:9px;height:9px;transition:transform .2s var(--ease)}
+.nav-features[open] summary{color:var(--text-dark-primary)}
+.nav-features[open] summary .chev{transform:rotate(180deg)}
+.nav-features-panel{display:flex;flex-direction:column;gap:2px}
+.nav-features-panel a{font-family:var(--f-body);font-size:13px;color:var(--text-dark-secondary);padding:10px 12px;border-radius:8px;display:block;white-space:nowrap}
+.nav-features-panel a:hover{background:rgba(255,255,255,.06);color:var(--text-dark-primary)}
+@media (min-width:901px){
+  .nav-features-panel{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%);background:var(--ui-card);border:1px solid rgba(255,255,255,.1);border-radius:12px;box-shadow:0 20px 44px rgba(0,0,0,.45);padding:8px;z-index:70}
+}
+@media (max-width:900px){
+  .nav-features{width:100%}
+  .nav-features summary{width:100%;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08);justify-content:space-between}
+  .nav-features-panel{padding:4px 0 4px 14px}
+  .nav-features-panel a{padding:12px 0;white-space:normal}
+}
+
 /* ================================================================
    HERO  (§17.2)
    ================================================================ */
 .hero{background:var(--ink);padding:132px var(--pad-x) 120px;position:relative;overflow:hidden}
 @media (max-width:767px){.hero{padding:64px var(--pad-x) 72px}}
 .hero-glow{position:absolute;top:-180px;right:-160px;width:640px;height:640px;border-radius:50%;filter:blur(100px);background:radial-gradient(circle,rgba(20,52,32,.55) 0%,transparent 68%);pointer-events:none}
-.hero-grid{position:relative;z-index:1;max-width:var(--content-max);margin:0 auto;display:grid;grid-template-columns:.92fr 1.08fr;gap:90px;align-items:center}
-@media (max-width:1023px){.hero-grid{grid-template-columns:1fr;gap:56px}}
+.hero-inner{position:relative;max-width:var(--content-max);margin:0 auto}
+.hero-content{position:relative;z-index:2;max-width:600px}
 .hero h1{margin-top:20px}
 .hero-lead{margin-top:28px}
 .hero-disclaimer{margin-top:20px;font-family:var(--f-body);font-size:13.5px;line-height:1.6;color:var(--text-dark-secondary);max-width:460px}
@@ -256,17 +277,17 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .hero-trust .it{display:flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary)}
 .hero-trust .it svg{width:13px;height:13px;color:var(--green)}
 
-.hero-orbit-wrap{position:relative;display:flex;align-items:center;justify-content:center;min-height:420px}
-#heroOrbitCanvas{width:100%;height:460px;max-width:560px}
-@media (max-width:1023px){#heroOrbitCanvas{height:360px}}
+/* Оrbit-визуал — крупный фоновый слой, частично уходит под текст слева */
+.hero-orbit-wrap{position:absolute;z-index:1;top:-70px;right:-120px;width:900px;height:900px;pointer-events:none}
+#heroOrbitCanvas{width:100%;height:100%;display:block}
+@media (max-width:1280px){.hero-orbit-wrap{width:720px;height:720px;top:-40px;right:-140px}}
+@media (max-width:1023px){
+  .hero-inner{display:flex;flex-direction:column}
+  .hero-content{order:1;max-width:none}
+  .hero-orbit-wrap{order:2;position:relative;z-index:0;top:0;right:0;width:100%;height:380px;margin-top:48px}
+}
+@media (max-width:767px){.hero-orbit-wrap{height:300px;margin-top:40px}}
 .hero-orbit-fallback{display:none;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--text-dark-secondary);text-align:center;padding:40px 0}
-
-.hero-picker{margin-top:38px}
-.hero-picker .lab{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-tertiary);margin-bottom:12px;display:block}
-.hero-picker-row{display:flex;flex-wrap:wrap;gap:10px}
-.hero-pick{font-family:var(--f-body);font-size:12.5px;color:var(--text-dark-secondary);border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:9px 16px;display:inline-flex;align-items:center;gap:6px;transition:border-color .25s var(--ease),color .25s var(--ease)}
-.hero-pick:hover{color:var(--text-dark-primary);border-color:rgba(57,255,110,.4)}
-.hero-pick svg{width:12px;height:12px;color:var(--green)}
 
 /* ================================================================
    PROBLEM (intro §17.3 + four problems §17.4)  — id="problem"
@@ -313,6 +334,9 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
    EVIDENCE STRIP  (§17.5) — id="evidence"
    ================================================================ */
 .evidence{background:var(--ink-2);padding:96px var(--pad-x)}
+.ev-head{max-width:var(--content-max);margin:0 auto 56px;text-align:center}
+.ev-head .kicker{justify-content:center}
+.ev-h2{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,3.2vw,40px);line-height:1.18;color:var(--text-dark-primary);max-width:680px;margin:0 auto}
 .ev-grid{max-width:var(--content-max);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:56px}
 @media (max-width:900px){.ev-grid{grid-template-columns:1fr;gap:48px}}
 .ev-item{display:flex;flex-direction:column;gap:14px}
@@ -322,7 +346,6 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 .ev-note{font-family:var(--f-body);font-size:12.5px;line-height:1.55;color:var(--text-dark-secondary);max-width:280px}
 .ev-help{margin-top:14px;padding-top:14px;border-top:1px solid rgba(57,255,110,.18);font-family:var(--f-body);font-size:12.5px;line-height:1.55;color:var(--text-dark-primary);max-width:280px}
 .ev-help strong{color:var(--green);font-weight:500}
-.ev-disclaimer{max-width:var(--content-max);margin:64px auto 0;font-family:var(--f-body);font-size:13.5px;line-height:1.7;color:var(--text-dark-secondary);max-width:640px}
 
 /* ================================================================
    SOLUTION REVEAL  (§17.6) — id="solution"
@@ -472,10 +495,11 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
 @media (max-width:600px){.persona-grid{grid-template-columns:1fr}}
 .persona-card{background:var(--ui-card);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;gap:16px;transition:border-color .25s var(--ease)}
 .persona-card:hover{border-color:rgba(57,255,110,.3)}
-.persona-figure{position:relative;width:100%;height:120px;display:flex;align-items:center;justify-content:center}
-.persona-figure svg.fig{width:64px;height:96px;color:var(--text-dark-secondary);overflow:visible}
-.persona-figure svg.fig .skin{stroke:var(--green);opacity:.9}
-.persona-badge{position:absolute;top:2px;right:calc(50% - 54px);width:30px;height:30px;border-radius:9px;background:var(--green-a);border:1px solid rgba(57,255,110,.3);display:flex;align-items:center;justify-content:center;color:var(--green)}
+.persona-figure{position:relative;width:100%;height:150px;display:flex;align-items:center;justify-content:center}
+.persona-figure svg.fig{width:78px;height:130px;color:var(--text-dark-secondary);overflow:visible}
+.persona-figure svg.fig .skin{stroke:var(--green);opacity:.95}
+.persona-figure svg.fig .fill{fill:rgba(57,255,110,.07)}
+.persona-badge{position:absolute;top:6px;right:calc(50% - 64px);width:30px;height:30px;border-radius:9px;background:var(--green-a);border:1px solid rgba(57,255,110,.3);display:flex;align-items:center;justify-content:center;color:var(--green)}
 .persona-card h3{font-family:var(--f-display);font-size:19px;line-height:1.25;color:var(--text-dark-primary)}
 .persona-card .lab{font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dark-tertiary)}
 .persona-card p{font-family:var(--f-body);font-size:13px;line-height:1.6;color:var(--text-dark-secondary);flex:1}
